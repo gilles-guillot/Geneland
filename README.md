@@ -1,10 +1,19 @@
 # Geneland package installation instructions
 
-## Rrequirements
+## Requirements
+
+### devtools
+
 To install this package from github, you need to install first the 
 R package [devtools](https://cran.r-project.org/web/packages/devtools/index.html)
 
-Windows users need also to install the program  [Rtools](https://cran.r-project.org/bin/windows/Rtools)
+### Windows users
+
+* Windows users need also to install the program  [Rtools](https://cran.r-project.org/bin/windows/Rtools)
+* To build the documentation (vignette) it is necessary to have pdlatex installed through e.g 
+[MiKTeX](https://miktex.org/download)
+
+
 
 ## Installation of Geneland
 

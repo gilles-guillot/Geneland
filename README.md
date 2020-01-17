@@ -1,8 +1,9 @@
 # Geneland package installation instructions
 
-R package devtools https://cran.r-project.org/web/packages/devtools/index.html
+To install this package from github, you need to install first the 
+R package [devtools](https://cran.r-project.org/web/packages/devtools/index.html)
 
-For Windows users: Rtools  https://cran.r-project.org/bin/windows/Rtools/
+Windows users need also to install the program  [Rtools](https://cran.r-project.org/bin/windows/Rtools)
 
 For installation under R: 
 

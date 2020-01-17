@@ -2,7 +2,7 @@
 
 ## Requirements
 
-### devtools
+### R package devtools
 
 To install this package from github, you need to install first the 
 R package [devtools](https://cran.r-project.org/web/packages/devtools/index.html)

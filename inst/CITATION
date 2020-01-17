@@ -1,0 +1,155 @@
+citHeader("To cite package 'Geneland' in publications use:")
+
+## desc <- packageDescription("Geneland")
+## year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", desc$Date)
+## vers <- paste("R package version", desc$Version)
+
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date)
+vers <- paste("R package version", meta$Version)
+
+
+citEntry(entry="Article",
+         author = 	 "Guillot, G. and Estoup, A. and Mortier, F. and Cosson, J.F.",
+         title = 	 "A spatial statistical model for landscape genetics",
+         journal = 	 "Genetics",
+         year = 	 2005,
+         volume =	 170,
+         number =	 3,
+         pages="1261-1280",
+         textVersion ="G. Guillot, Estoup, A., Mortier, F. Cosson, J.F. A spatial statistical
+model for landscape genetics. Genetics, 170, 1261-1280, 2005"  )
+
+citEntry(entry="Article",
+         author = 	 "G. Guillot, Mortier, F., Estoup, A",
+         title = 	 "Geneland: A program for landscape genetics",
+         journal = 	 "Molecular Ecology Note",
+         year = 	 2005,
+         volume =	 5,
+         number =	 3,
+         pages="712-715",
+         textVersion ="G. Guillot, Mortier, F., Estoup, A. Geneland: A program for landscape genetics.
+Molecular Ecology Notes, 5, 712-715, 2005"  )
+
+
+citEntry(entry="Article",
+         author = 	 "A. Coulon, G. Guillot G., Cosson J.-F., Angibault J.M.A. Aulagnier S.,
+Cargnelutti B., Galan M., Hewison A.J.M",
+         title = 	 "Genetic structure is influenced by lansdcape features.
+Empirical evidence from a roe deer population",
+         journal = 	 "Molecular Ecology",
+         year = 	 2006,
+         volume =	 15,
+         pages="1669-1679",
+         textVersion ="A. Coulon, G. Guillot G., Cosson J.-F., Angibault J.M.A. Aulagnier S.,
+Cargnelutti B., Galan M., Hewison
+ A.J.M. Genetic structure is influenced by lansdcape features. Empirical evidence from a roe deer population.
+Molecular Ecology, 15 1669-1679, 2006"  )
+
+
+
+ 
+citEntry(entry="Article",
+         author = 	 "U. Hannelius, E. Salmela, T. Lappalainen, G. Guillot,
+C.M.  Lindgren,  U. von Doebeln, P. Lahermo, P. and J. Kere",
+         title = 	        "Population substructure in Finland and Sweden
+revealed by a small number of unlinked autosomal SN",
+         journal = 	 "BMC Genetics",	
+         year = 	 2008,
+         volume =	 "9",
+         number =	 "54",
+         pages="",
+         textVersion ="U. Hannelius, E. Salmela, T. Lappalainen, G. Guillot, C.M.
+Lindgren,  U. von Doebeln, P. Lahermo, P. and J. Kere  . Population substructure
+in Finland and Sweden revealed by a small number of unlinked autosomal SNPs. BMC Genetics, 9:54, 2008.")
+
+citEntry(entry="Article",
+         author = 	 "G. Guillot, F. Santos and A. Estoup",
+         title = 	        "Analysing georeferenced population genetics data w
+ith Geneland:  a new algorithm to deal with null alleles and a friendly graphical user interface",
+         journal = 	 " Bioinformatic",	
+         year = 	 2008,
+         volume =	 "24",
+         number =	 "11",
+         pages="1406-14",
+         textVersion ="G. Guillot, F. Santos and A. Estoup. Analysing georeferenced
+population genetics data with Geneland:  a new algorithm to deal with null alleles
+and a friendly graphical user interface. Bioinformatics, 24(11):1406-1407, 2008.")
+
+
+citEntry(entry="Article",
+         author = 	 "G. Guillot",
+         title = 	        "Inference of structure in subdivided populations
+at low levels of genetic differentiation. The correlated allele frequencies model revisited",
+         journal = 	 "Bioinformatic",	
+         year = 	 2008,
+         volume =	 "24",
+         number =	 "",
+         pages="2222-2228",
+         textVersion ="G. Guillot.  Inference of structure in subdivided populations
+at low levels of genetic differentiation. The correlated allele frequencies model revisited.
+Bioinformatics, 24:2222-2228, 2008.")
+
+
+citEntry(entry="Article",
+         author = 	 "G. Guillot and F. Santos",
+         title = 	        " A computer program to simulate multilocus genotype
+data with spatially auto-correlated allele frequencies",
+         journal = 	 "Molecular Ecology Resources",	
+         year = 	 2009,
+         volume =	 "9",
+         number =	 "4",
+         pages=" 1112-1120",
+         textVersion ="G. Guillot and F. Santos  A computer program to simulate
+multilocus genotype data with spatially auto-correlated allele frequencies.
+Molecular Ecology Resources, 9(4), 1112-1120, 2009.")
+
+citEntry(entry="Article",
+  title="Statistical methods in spatial genetics",
+  author="Guillot, Gilles and Leblois, Raphael and Coulon, Aurelie and Frantz, Alain C",
+  journal="Molecular Ecology",
+  volume="18",
+  number="23",
+  pages="4734-4756",
+  year="2009",
+  publisher="Wiley Online Library",
+  textVersion="Guillot, G., Leblois, R., Coulon, A. and Frantz, A. C. Statistical methods in spatial genetics. Molecular Ecology, 18(23), 4734-4756, 2009")
+
+citEntry(entry="Article",
+         author = 	 "G. Guillot and F. Santos",
+         title = 	        "Using AFLP markers and the Geneland program for
+the inference of population genetic structure",
+         journal = 	 "Molecular Ecology Resources",	
+         year = 	 2010,
+         volume =	 "10",
+         number =	 "6",
+         pages="1082-1084",
+         textVersion ="G. Guillot and F. Santos.  Using AFLP markers and the
+Geneland program for the inference of population genetic structure. Molecular Ecology Resources 10(6), 1082-1084, 2010")
+
+
+
+
+citEntry(entry="Article",
+         author = 	 "B. Guedj and G. Guillot",
+         title = 	        "Estimating the location and shape of hybrid zones",
+         journal = 	 "Molecular Ecology Resources",	
+         year = 	 2011,
+         volume =	 "11",
+         number =	 "6",
+         pages="1119-1123",
+         textVersion ="B. Guedj and G. Guillot. Estimating the location and shape of hybrid zones. Molecular Ecology Resources, 11(6) 1119-1123, 2011")
+
+
+
+citEntry(entry="Article",
+         author = 	 "G. Guillot, S. Renaud, R. Ledevin, J. Michaux, J. Claude",
+         title = 	        "A Unifying Model for the Analysis of Phenotypic, Genetic and Geographic Data",
+         journal = 	 "Systematic Biology",	
+         year = 	 2012,
+         volume =	 "",
+         number =	 "",
+         pages="",
+         textVersion ="G. Guillot, S. Renaud, R. Ledevin, J. Michaux and  J. Claude.
+A Unifying Model for the Analysis of Phenotypic, Genetic and Geographic Data. Systematic Biology, to appear, 2012.")
+
+

@@ -1,0 +1,152 @@
+\contentsline {section}{\numberline {1}Overview}{6}{section.1}
+\contentsline {subsection}{\numberline {1.1}About {\sc Geneland}}{6}{subsection.1.1}
+\contentsline {subsubsection}{\numberline {1.1.1}How to request help}{6}{subsubsection.1.1.1}
+\contentsline {subsubsection}{\numberline {1.1.2}History}{6}{subsubsection.1.1.2}
+\contentsline {subsubsection}{\numberline {1.1.3}Credit}{6}{subsubsection.1.1.3}
+\contentsline {subsubsection}{\numberline {1.1.4}Citation}{6}{subsubsection.1.1.4}
+\contentsline {subsection}{\numberline {1.2}System and hardware requirements}{7}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Operating system}{7}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}Memory}{7}{subsubsection.1.2.2}
+\contentsline {subsubsection}{\numberline {1.2.3}Disk space}{7}{subsubsection.1.2.3}
+\contentsline {subsubsection}{\numberline {1.2.4}Computer speed}{7}{subsubsection.1.2.4}
+\contentsline {subsection}{\numberline {1.3}Installation}{7}{subsection.1.3}
+\contentsline {subsubsection}{\numberline {1.3.1}Installing R}{7}{subsubsection.1.3.1}
+\contentsline {subsubsection}{\numberline {1.3.2}Installing {\sc Geneland}}{7}{subsubsection.1.3.2}
+\contentsline {subsection}{\numberline {1.4}Tasks performed}{7}{subsection.1.4}
+\contentsline {subsubsection}{\numberline {1.4.1}Estimating the number of panmictic groups and locating their spatial boundaries}{7}{subsubsection.1.4.1}
+\contentsline {subsubsection}{\numberline {1.4.2}Input files}{8}{subsubsection.1.4.2}
+\contentsline {subsubsection}{\numberline {1.4.3}Output files and graphics}{8}{subsubsection.1.4.3}
+\contentsline {section}{\numberline {2}Models}{8}{section.2}
+\contentsline {subsection}{\numberline {2.1}Mixture models for genetic data}{9}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Diploid data: looking for within group Hardy-Weinberg and linkage equilibrium}{9}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Haploid data: multinomial distribution and linkage equilibrium}{9}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}The uncorrelated frequency model}{9}{subsubsection.2.1.3}
+\contentsline {subsubsection}{\numberline {2.1.4}The correlated frequency model}{9}{subsubsection.2.1.4}
+\contentsline {subsection}{\numberline {2.2}Mixture model for phenotypic data}{10}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Models underlying population membership}{11}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}The non-spatial model}{11}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}The spatial model}{11}{subsubsection.2.3.2}
+\contentsline {subsection}{\numberline {2.4}Additional modelling options}{12}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Null alleles}{12}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Coordinates uncertainty}{13}{subsubsection.2.4.2}
+\contentsline {subsection}{\numberline {2.5}Admixture model and hybrid zones}{16}{subsection.2.5}
+\contentsline {subsubsection}{\numberline {2.5.1}Model}{16}{subsubsection.2.5.1}
+\contentsline {subsubsection}{\numberline {2.5.2}Inference procedure}{16}{subsubsection.2.5.2}
+\contentsline {section}{\numberline {3}Data format}{19}{section.3}
+\contentsline {subsection}{\numberline {3.1}Genotypes file}{19}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Diploid codominant data file}{19}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Diploid dominant data file}{19}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Haploid data file}{20}{subsubsection.3.1.3}
+\contentsline {subsection}{\numberline {3.2}Coordinates file}{20}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}File format}{20}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Pre-processing coordinates to convert Lon/Lat into UTM}{21}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}Phenotypes file}{21}{subsection.3.3}
+\contentsline {section}{\numberline {4}Examples with the GUI}{22}{section.4}
+\contentsline {subsection}{\numberline {4.1}Launching the GUI}{22}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Selecting input and output files}{23}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Inference}{24}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Post-processing MCMC outputs}{25}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Generating graphical and numerical outputs}{26}{subsection.4.5}
+\contentsline {subsubsection}{\numberline {4.5.1}Estimated number of HWLE populations}{27}{subsubsection.4.5.1}
+\contentsline {subsubsection}{\numberline {4.5.2}Map of estimated population membership}{28}{subsubsection.4.5.2}
+\contentsline {subsubsection}{\numberline {4.5.3}F statistics}{28}{subsubsection.4.5.3}
+\contentsline {subsection}{\numberline {4.6}MCMC inference under the admixture model}{29}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}Launching several independent runs}{30}{subsection.4.7}
+\contentsline {subsection}{\numberline {4.8}Parallel computations}{31}{subsection.4.8}
+\contentsline {section}{\numberline {5}Examples with the command-line}{32}{section.5}
+\contentsline {subsection}{\numberline {5.1}Preliminary steps}{32}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}Organising your session}{32}{subsubsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.2}Launching {\sc Geneland}}{32}{subsubsection.5.1.2}
+\contentsline {subsubsection}{\numberline {5.1.3}Loading the data}{32}{subsubsection.5.1.3}
+\contentsline {subsubsection}{\numberline {5.1.4}Checking the data}{32}{subsubsection.5.1.4}
+\contentsline {subsection}{\numberline {5.2}Inference}{33}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Post-processing MCMC outputs}{34}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Generating graphical and numerical outputs}{34}{subsection.5.4}
+\contentsline {subsubsection}{\numberline {5.4.1}Estimated number of HWLE populations}{34}{subsubsection.5.4.1}
+\contentsline {subsubsection}{\numberline {5.4.2}Saving graphics}{35}{subsubsection.5.4.2}
+\contentsline {subsubsection}{\numberline {5.4.3}Map of posterior probability of population membership}{36}{subsubsection.5.4.3}
+\contentsline {subsubsection}{\numberline {5.4.4}F statistics}{36}{subsubsection.5.4.4}
+\contentsline {subsection}{\numberline {5.5}MCMC convergence assessment}{37}{subsection.5.5}
+\contentsline {subsubsection}{\numberline {5.5.1}Checking MCMC convergence, what does that mean?}{37}{subsubsection.5.5.1}
+\contentsline {subsubsection}{\numberline {5.5.2}Factors affecting MCMC convergence}{37}{subsubsection.5.5.2}
+\contentsline {subsubsection}{\numberline {5.5.3}Example of R code as an aid to convergence diagnostic}{37}{subsubsection.5.5.3}
+\contentsline {section}{\numberline {6}Influence of model assumptions}{39}{section.6}
+\contentsline {subsection}{\numberline {6.1}Choosing a model to perform MCMC simulations}{39}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Comparing outputs from MCMC runs under different models}{39}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Objective criterions to perform model selection [TODO] }{39}{subsection.6.3}
+\contentsline {section}{\numberline {7}Command line examples}{40}{section.7}
+\contentsline {subsection}{\numberline {7.1}Null alleles}{40}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Non-spatial prior}{40}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Analysing non spatial data}{40}{subsection.7.3}
+\contentsline {subsection}{\numberline {7.4}Getting improved graphics}{40}{subsection.7.4}
+\contentsline {subsection}{\numberline {7.5}Convergence checking}{40}{subsection.7.5}
+\contentsline {subsection}{\numberline {7.6}Displaying GIS data}{40}{subsection.7.6}
+\contentsline {subsubsection}{\numberline {7.6.1}Resources}{41}{subsubsection.7.6.1}
+\contentsline {subsubsection}{\numberline {7.6.2}Loading and plotting coastal lines}{41}{subsubsection.7.6.2}
+\contentsline {subsubsection}{\numberline {7.6.3}Superimposing countries boundaries and coast lines on a {\sc Geneland} map}{41}{subsubsection.7.6.3}
+\contentsline {subsubsection}{\numberline {7.6.4}GRASS [TODO]}{41}{subsubsection.7.6.4}
+\contentsline {subsubsection}{\numberline {7.6.5}R plots and GoogleMaps}{41}{subsubsection.7.6.5}
+\contentsline {subsubsection}{\numberline {7.6.6}Displaying GIS data}{42}{subsubsection.7.6.6}
+\contentsline {section}{\numberline {8}Simulation of data under the spatially organised HWLE populations model}{43}{section.8}
+\contentsline {section}{\numberline {9} Spatially correlated frequencies}{44}{section.9}
+\contentsline {section}{\numberline {10}Using other softwares to analyse {\sc Geneland} outputs}{45}{section.10}
+\contentsline {subsection}{\numberline {10.1}Population genetics softwares}{45}{subsection.10.1}
+\contentsline {subsubsection}{\numberline {10.1.1}Genepop}{45}{subsubsection.10.1.1}
+\contentsline {subsection}{\numberline {10.2}MCMC post-processing softwares}{45}{subsection.10.2}
+\contentsline {subsubsection}{\numberline {10.2.1}Partitionview}{45}{subsubsection.10.2.1}
+\contentsline {subsubsection}{\numberline {10.2.2}Distruct}{45}{subsubsection.10.2.2}
+\contentsline {section}{\numberline {A}Frequently asked questions}{46}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}Can you provide sample input files?}{46}{subsection.A.1}
+\contentsline {subsection}{\numberline {A.2}Can I use population data?}{46}{subsection.A.2}
+\contentsline {subsection}{\numberline {A.3}Can I use SNPs?}{46}{subsection.A.3}
+\contentsline {subsection}{\numberline {A.4}Large number of loci}{46}{subsection.A.4}
+\contentsline {subsubsection}{\numberline {A.4.1}Running {\sc Geneland} on a random subsets of loci}{46}{subsubsection.A.4.1}
+\contentsline {subsubsection}{\numberline {A.4.2}Managing output files}{46}{subsubsection.A.4.2}
+\contentsline {subsection}{\numberline {A.5}Can I use haploid data?}{46}{subsection.A.5}
+\contentsline {subsection}{\numberline {A.6}Unusual ploidies}{46}{subsection.A.6}
+\contentsline {subsection}{\numberline {A.7}Can I use dominant markers?}{46}{subsection.A.7}
+\contentsline {subsection}{\numberline {A.8}Special landscape features}{46}{subsection.A.8}
+\contentsline {subsection}{\numberline {A.9}Linear habitat}{46}{subsection.A.9}
+\contentsline {subsection}{\numberline {A.10}MCMC jargon}{46}{subsection.A.10}
+\contentsline {subsection}{\numberline {A.11}How should I choose $K_{\qopname \relax m{max}}$?}{47}{subsection.A.11}
+\contentsline {subsection}{\numberline {A.12}Number of iterations}{47}{subsection.A.12}
+\contentsline {subsection}{\numberline {A.13}MCMC thinning}{47}{subsection.A.13}
+\contentsline {subsection}{\numberline {A.14}Storage}{47}{subsection.A.14}
+\contentsline {subsection}{\numberline {A.15}Null alleles}{47}{subsection.A.15}
+\contentsline {subsection}{\numberline {A.16}Non spatial model with coordiantes}{47}{subsection.A.16}
+\contentsline {subsection}{\numberline {A.17}One run only to estimate $K$}{48}{subsection.A.17}
+\contentsline {subsection}{\numberline {A.18}Best run under same model option}{48}{subsection.A.18}
+\contentsline {subsection}{\numberline {A.19}Best run under various model options}{48}{subsection.A.19}
+\contentsline {subsection}{\numberline {A.20}Coordinates uncertainty and population data}{48}{subsection.A.20}
+\contentsline {subsection}{\numberline {A.21}Parameter for uncertainty on coordinates}{48}{subsection.A.21}
+\contentsline {subsection}{\numberline {A.22}Power}{48}{subsection.A.22}
+\contentsline {subsection}{\numberline {A.23}Ghost clusters}{48}{subsection.A.23}
+\contentsline {subsection}{\numberline {A.24}Non recombining DNA sequences}{49}{subsection.A.24}
+\contentsline {section}{\numberline {B}Algorithm}{50}{appendix.B}
+\contentsline {subsection}{\numberline {B.1}Simulation based inference [TODO] }{50}{subsection.B.1}
+\contentsline {subsubsection}{\numberline {B.1.1}Special aspects}{50}{subsubsection.B.1.1}
+\contentsline {subsection}{\numberline {B.2}Post-processing MCMC outputs [TODO] }{50}{subsection.B.2}
+\contentsline {subsubsection}{\numberline {B.2.1}Estimating $K$}{50}{subsubsection.B.2.1}
+\contentsline {subsubsection}{\numberline {B.2.2}Dealing with label switching}{50}{subsubsection.B.2.2}
+\contentsline {subsubsection}{\numberline {B.2.3}Computing posterior probability of cluster memberships}{50}{subsubsection.B.2.3}
+\contentsline {subsection}{\numberline {B.3}F statistics [TODO] }{50}{subsection.B.3}
+\contentsline {section}{\numberline {C}Description of MCMC output files }{50}{appendix.C}
+\contentsline {subsection}{\numberline {C.1}Files produced by MCMC simulations}{50}{subsection.C.1}
+\contentsline {subsubsection}{\numberline {C.1.1}\texttt {parameters.txt}}{50}{subsubsection.C.1.1}
+\contentsline {subsubsection}{\numberline {C.1.2}\texttt {populations.numbers.txt}}{50}{subsubsection.C.1.2}
+\contentsline {subsubsection}{\numberline {C.1.3}\texttt {nuclei.numbers.txt}}{50}{subsubsection.C.1.3}
+\contentsline {subsubsection}{\numberline {C.1.4}\texttt {coord.nuclei.txt}}{50}{subsubsection.C.1.4}
+\contentsline {subsubsection}{\numberline {C.1.5}\texttt {color.nuclei.txt}}{50}{subsubsection.C.1.5}
+\contentsline {subsubsection}{\numberline {C.1.6}\texttt {ancestral.frequencies.txt}}{50}{subsubsection.C.1.6}
+\contentsline {subsubsection}{\numberline {C.1.7}\texttt {drifts.txt}}{50}{subsubsection.C.1.7}
+\contentsline {subsubsection}{\numberline {C.1.8}\texttt {frequencies.txt}}{50}{subsubsection.C.1.8}
+\contentsline {subsubsection}{\numberline {C.1.9}\texttt {hidden.coord.txt}}{50}{subsubsection.C.1.9}
+\contentsline {subsubsection}{\numberline {C.1.10}\texttt {log.likelihood.txt}}{50}{subsubsection.C.1.10}
+\contentsline {subsubsection}{\numberline {C.1.11}\texttt {log.posterior.density.txt}}{51}{subsubsection.C.1.11}
+\contentsline {subsection}{\numberline {C.2}Files produced when post-processing MCMC simulations}{51}{subsection.C.2}
+\contentsline {subsubsection}{\numberline {C.2.1}\texttt {postprocess.parameters.txt}}{51}{subsubsection.C.2.1}
+\contentsline {subsubsection}{\numberline {C.2.2}\texttt {proba.pop.membership.txt}}{51}{subsubsection.C.2.2}
+\contentsline {subsubsection}{\numberline {C.2.3}\texttt {proba.pop.membership.indiv.txt }}{51}{subsubsection.C.2.3}
+\contentsline {subsubsection}{\numberline {C.2.4}\texttt {modal.pop.txt }}{51}{subsubsection.C.2.4}
+\contentsline {subsubsection}{\numberline {C.2.5}\texttt {modal.pop.indiv.txt }}{51}{subsubsection.C.2.5}
+\contentsline {subsubsection}{\numberline {C.2.6}\texttt {perm.txt }}{51}{subsubsection.C.2.6}

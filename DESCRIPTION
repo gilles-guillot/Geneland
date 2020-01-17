@@ -1,0 +1,20 @@
+Package: Geneland
+Title: Clustering of living organisms from geo-referenced genetic data
+Version: 4.9.0
+Authors@R: 
+    person(given = "Gilles",
+           family = "Guillot",
+           role = c("aut", "cre"),
+           email = "gilles.b.guillot@gmail.com",
+           comment = c(ORCID = "0000-0003-0675-8325"))
+Description: Bayesian model and MCMC inference from geo-referenced genetic/phenotypic data
+License: GPL-3
+Encoding: UTF-8
+LazyData: true  
+Depends: tcltk
+Suggests: mapproj,maps,PBSmapping,RandomFields,fields
+NeedsCompilation: yes
+URL: https://github.com/gilles-guillot/Geneland
+BugReports: https://github.com/gilles-guillot/Geneland/issues
+RoxygenNote: 7.0.0.9000
+VignetteBuilder: knitr

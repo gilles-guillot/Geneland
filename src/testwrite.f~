@@ -1,0 +1,5 @@
+      subroutine testwrite(path,x)
+      character*255 path
+      double precision x
+      call ggwrite(path,x)
+      end subroutine testwrite

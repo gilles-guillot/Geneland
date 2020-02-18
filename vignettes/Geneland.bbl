@@ -1,0 +1,217 @@
+\begin{thebibliography}{31}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Balding(2003)]{Balding03}
+D.J. Balding.
+\newblock Likelihood-based inference for genetic correlation coefficients.
+\newblock \emph{Theoretical Population Biology}, 63:\penalty0 221--230, 2003.
+
+\bibitem[Beaumont and Balding(2004)]{Beaumont04}
+M.A Beaumont and D.J. Balding.
+\newblock Identifying adaptive genetic divergence among populations from genome
+  scans.
+\newblock \emph{Molecular Ecology}, 13:\penalty0 969--980, 2004.
+
+\bibitem[Bivand et~al.(2008)Bivand, Pebesma, and G{\'o}mez-{R}ubio]{Bivand08}
+R.~Bivand, E.~Pebesma, and V.~G{\'o}mez-{R}ubio.
+\newblock \emph{Applied Spatial Data Analysis with {R}}.
+\newblock Springer, New York, 2008.
+\newblock URL \url{http://www.springer.com/978-0-387-78170-9}.
+\newblock ISBN 978-0-387-78170-.
+
+\bibitem[Callen et~al.(1993)Callen, Thompson, Shen, Phillips, Richards, and
+  Mulley]{Callen93}
+D.~F. Callen, A.D. Thompson, Y.~Shen, H.~A. Phillips, R.~I. Richards, and J.~C.
+  Mulley.
+\newblock Incidence and origin of 'null' alleles in the (ac)n microsatellite
+  markers.
+\newblock \emph{American Journal of Human Genetics}, 52:\penalty0 922--927,
+  1993.
+
+\bibitem[Coulon et~al.(2006)Coulon, Guillot, Cosson, Angibault, Aulagnier,
+  Cargnelutti, Galan, and Hewison]{Coulon06}
+A.~Coulon, G.~Guillot, J.F. Cosson, J.M.A. Angibault, S.~Aulagnier,
+  B.~Cargnelutti, M.~Galan, and A.J.M Hewison.
+\newblock Genetics structure is influenced by lansdcape features. {E}mpirical
+  evidence from a roe deer population.
+\newblock \emph{Molecular Ecology}, 15:\penalty0 1669--1679, 2006.
+
+\bibitem[Dakin and Avise(2004)]{Dakin04}
+E.E Dakin and J.C. Avise.
+\newblock Microsatellite null alleles in parentage analysis.
+\newblock \emph{Heredity}, 93\penalty0 (5):\penalty0 504--509, 2004.
+
+\bibitem[Foll et~al.(2008)Foll, Beaumont, and Gaggiotti]{Foll08}
+M.~Foll, M.A. Beaumont, and O.~Gaggiotti.
+\newblock An approximate {B}ayesian computation approach to overcome biases
+  that arise when using {AFLP} markers to study population structure.
+\newblock \emph{Genetics}, 179:\penalty0 927--939, 2008.
+
+\bibitem[Fontaine et~al.(2007)Fontaine, Baird, Piry, Ray, Tolley, Duke, Birkun,
+  Ferreira, Jauniaux, Llavona, {\"O}st{\"u}rk, {\"O}st{\"u}rk, Ridoux, Rogan,
+  Sequeira, Siebert, Vikingson, Bouquegneau, and Michaux]{Fontaine07}
+M.~Fontaine, S.J.E. Baird, S.~Piry, N.~Ray, K.~Tolley, S.~Duke, A.~Birkun,
+  M.~Ferreira, T.~Jauniaux, A.~Llavona, B.~{\"O}st{\"u}rk, A.A. {\"O}st{\"u}rk,
+  V.~Ridoux, E.~Rogan, M.~Sequeira, U.~Siebert, G.A. Vikingson, J.M.
+  Bouquegneau, and J.R. Michaux.
+\newblock Rise of oceanographic barriers in continuous populations of a
+  cetacean: the genetic structure of harbour porpoises in old world waters.
+\newblock \emph{BMC Biology}, 5\penalty0 (30), 2007.
+
+\bibitem[Guedj and Guillot(2011)]{Guedj11}
+B.~Guedj and G.~Guillot.
+\newblock Estimating the location and shape of hybrid zones.
+\newblock \emph{To appear in {M}olecular {E}cology {R}esources}, 11\penalty0
+  (6):\penalty0 1119--1123, 2011.
+
+\bibitem[Guillot(2008)]{Guillot08b}
+G.~Guillot.
+\newblock Inference of structure in subdivided populations at low levels of
+  genetic differentiation. {T}he correlated allele frequencies model revisited.
+\newblock \emph{Bioinformatics}, 24:\penalty0 2222--2228, 2008.
+
+\bibitem[Guillot(2009{\natexlab{a}})]{Guillot09e}
+G.~Guillot.
+\newblock On the inference of spatial structure from population genetics data.
+\newblock \emph{Bioinformatics}, 25\penalty0 (14):\penalty0 1796--1801,
+  2009{\natexlab{a}}.
+
+\bibitem[Guillot(2009{\natexlab{b}})]{Guillot09i}
+G.~Guillot.
+\newblock Response to comment on '{O}n the inference of spatial structure from
+  population genetics data'.
+\newblock \emph{Bioinformatics}, 25\penalty0 (14):\penalty0 1805--1806,
+  2009{\natexlab{b}}.
+
+\bibitem[Guillot and Carpentier-{S}kandalis(2011)]{Guillot11b}
+G.~Guillot and A.~Carpentier-{S}kandalis.
+\newblock On the informativeness of dominant and co-dominant genetic markers
+  for {B}ayesian supervised clustering.
+\newblock \emph{The Open Statistics and Probability Journal}, 3:\penalty0
+  7--12, 2011.
+
+\bibitem[Guillot and Foll(2009)]{Guillot09c}
+G.~Guillot and M.~Foll.
+\newblock Accounting for the ascertainment bias in {M}arkov chain {M}onte
+  {C}arlo inferences of population structure.
+\newblock \emph{Bioinformatics}, 25\penalty0 (4):\penalty0 552--554, 2009.
+
+\bibitem[Guillot and Santos(2009)]{Guillot09a}
+G.~Guillot and F.~Santos.
+\newblock A computer program to simulate multilocus genotype data with
+  spatially auto-correlated allele frequencies.
+\newblock \emph{Molecular Ecology Resources}, 9\penalty0 (4):\penalty0 1112 --
+  1120, 2009.
+
+\bibitem[Guillot and Santos(2010)]{Guillot10b}
+G.~Guillot and F.~Santos.
+\newblock Using {AFLP} markers and the {G}eneland program for the inference of
+  population genetic structure.
+\newblock \emph{Molecular Ecology Resources}, 10\penalty0 (6):\penalty0
+  1082--1084, 2010.
+
+\bibitem[Guillot et~al.(2005{\natexlab{a}})Guillot, Estoup, Mortier, and
+  Cosson]{Guillot05a}
+G.~Guillot, A.~Estoup, F.~Mortier, and J.F. Cosson.
+\newblock A spatial statistical model for landscape genetics.
+\newblock \emph{Genetics}, 170\penalty0 (3):\penalty0 1261--1280,
+  2005{\natexlab{a}}.
+
+\bibitem[Guillot et~al.(2005{\natexlab{b}})Guillot, Mortier, and
+  Estoup]{Guillot05c}
+G.~Guillot, F.~Mortier, and A.~Estoup.
+\newblock Geneland: {A} computer package for landscape genetics.
+\newblock \emph{Molecular Ecology Notes}, 5\penalty0 (3):\penalty0 708--711,
+  2005{\natexlab{b}}.
+
+\bibitem[Guillot et~al.(2008)Guillot, Santos, and Estoup]{Guillot08a}
+G.~Guillot, F.~Santos, and A.~Estoup.
+\newblock Analysing georeferenced population genetics data with {G}eneland: a
+  new algorithm to deal with null alleles and a friendly graphical user
+  interface.
+\newblock \emph{Bioinformatics}, 24\penalty0 (11):\penalty0 1406--1407, 2008.
+
+\bibitem[Guillot et~al.(2009)Guillot, Leblois, Coulon, and Frantz]{Guillot09g}
+G.~Guillot, R.~Leblois, A.~Coulon, and A.~Frantz.
+\newblock {S}tatistical methods in spatial genetics.
+\newblock \emph{Molecular Ecology}, 18:\penalty0 4734--4756, 2009.
+
+\bibitem[Guillot et~al.(2012)Guillot, Renaud, Ledevin, Michaux, and
+  Claude]{Guillot12a}
+G.~Guillot, S.~Renaud, R.~Ledevin, J.~Michaux, and J.~Claude.
+\newblock A unifying model for the analysis of phenotypic, genetic and
+  geographic data.
+\newblock \emph{Systematic Biology}, 61, 2012.
+
+\bibitem[Hannelius et~al.(2008)Hannelius, Salmela, Lappalainen, Guillot,
+  Lindgren, {v}on {D}\"obeln, Lahermo, and Kere]{Hannelius08}
+U.~Hannelius, E.~Salmela, T.~Lappalainen, G.~Guillot, C.M. Lindgren, U.~{v}on
+  {D}\"obeln, P.~Lahermo, and J.~Kere.
+\newblock Population substructure in {F}inland and {S}weden revealed by a small
+  number of unlinked autosomal {SNP}s.
+\newblock \emph{BMC {G}enetics}, 9\penalty0 (54), 2008.
+
+\bibitem[Hille et~al.(2012)Hille, Janssen, and Guillot]{Hille12}
+A.~Hille, I.~Janssen, and G.~Guillot.
+\newblock Determining spatial population structure of the grass snake ({\em
+  natrix natrix}) in amsterdam surroundings.
+\newblock \emph{In preparation}, 2012.
+
+\bibitem[Nicholson et~al.(2002)Nicholson, Smith, J{\'o}nsson, G{\'u}stafsson,
+  Stef{\'a}nsson, and Donnelly]{Nicholson02}
+G.~Nicholson, A.V. Smith, F.~J{\'o}nsson, {\'O}.~G{\'u}stafsson,
+  K.~Stef{\'a}nsson, and P.~Donnelly.
+\newblock Assessing population differentiation and isolation from
+  single-nucleotide polymorphism data.
+\newblock \emph{Journal of the Royal Statistical Society, series B},
+  64\penalty0 (4):\penalty0 695--715, 2002.
+
+\bibitem[Paetkau et~al.(1995)Paetkau, Calvert, Stirling, and
+  Strobeck]{Paetkau95}
+D.~Paetkau, W.~Calvert, I.~Stirling, and C.~Strobeck.
+\newblock Microsatellite analysis of population structure in canadian polar
+  bears.
+\newblock \emph{Molecular Ecology}, 4:\penalty0 347--354, 1995.
+
+\bibitem[Paradis(2005)]{Paradis05}
+E.~Paradis.
+\newblock R for beginers.
+\newblock \url{http://cran.r-project.org/doc/contrib/Paradis-rdebuts\_en.pdf},
+  2005.
+
+\bibitem[Paradis(2006)]{Paradis06}
+E.~Paradis.
+\newblock \emph{Analysis of Phylogenetics and Evolution with {R}}.
+\newblock Use R. Springer, New York, 2006.
+\newblock URL \url{http://www.springer.com/0-387-32914-5}.
+\newblock ISBN 0-387-32914-5.
+
+\bibitem[Pompanon et~al.(2005)Pompanon, Bonin, Bellemain, and
+  Taberlet]{Pompanon05}
+F.~Pompanon, A.~Bonin, E.~Bellemain, and P.~Taberlet.
+\newblock Genotyping errors: causes, consequences and solutions.
+\newblock \emph{Nature Review Genetics}, 6\penalty0 (11):\penalty0 847--859,
+  2005.
+
+\bibitem[Pritchard et~al.(2000)Pritchard, Stephens, and Donnelly]{Pritchard00}
+J.K. Pritchard, M.~Stephens, and P.~Donnelly.
+\newblock Inference of population structure using multilocus genotype data.
+\newblock \emph{Genetics}, 155:\penalty0 945--959, 2000.
+
+\bibitem[Rousset(2007)]{Rousset07}
+F.~Rousset.
+\newblock Genepop'007: a complete re-implementation of the {G}enepop software
+  for windows and linux.
+\newblock \emph{Molecular Ecology Notes}, 8\penalty0 (1):\penalty0 103--106,
+  2007.
+
+\bibitem[Weir and Cockerham(1984)]{Weir84}
+B.S. Weir and C.C. Cockerham.
+\newblock Estimating {F}-statistics for the analysis of population structure.
+\newblock \emph{Evolution}, 38\penalty0 (6):\penalty0 1358--1370, 1984.
+
+\end{thebibliography}

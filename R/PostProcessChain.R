@@ -1,6 +1,5 @@
 #' @title PostProcessChain
-#' @description   Computes posterior probabilities of population membership for each pixel
-#'   of the spatial domain. 
+#' @description   Computes posterior probabilities of population membership for each pixel of the spatial domain. 
 #' @usage
 #'   PostProcessChain(coordinates,
 #'                    path.mcmc,nxdom, nydom,burnin)
@@ -22,7 +21,6 @@
 #'     \code{nit}=100000 and \code{thinning}=100, then only 1000 iterations
 #'     are stored. Then \code{burnin}=10 will throw away 10 stored
 #'     iterations, namely 100*10 computed iterations.
-#' 
 #' @details Posterior probability of population membership for each pixel: 
 #'     They  are
 #'     written in an ascii file called \file{proba.pop.membership.txt}.
@@ -43,13 +41,10 @@
 #'       spatial coordinates.
 #'     
 #'   
-#'   
-#'   
 #'   Label of modal population for pixels and individuals: 
 #'     They are written in files named \file{modal.pop.txt} and
-#'     \file{modal.pop.indiv.txt}
-#'     respectively.
-#'     @export
+#'     \file{modal.pop.indiv.txt}    respectively.
+#' @export
 
 
 PostProcessChain <- function(coordinates=NULL,#data

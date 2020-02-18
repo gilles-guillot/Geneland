@@ -26,8 +26,7 @@ PostProcessChain(coordinates,
     iterations, namely 100*10 computed iterations.
 }
 \description{
-Computes posterior probabilities of population membership for each pixel
-  of the spatial domain.
+Computes posterior probabilities of population membership for each pixel of the spatial domain.
 }
 \details{
 Posterior probability of population membership for each pixel: 
@@ -50,11 +49,7 @@ Posterior probability of population membership for each pixel:
       spatial coordinates.
     
   
-  
-  
   Label of modal population for pixels and individuals: 
     They are written in files named \file{modal.pop.txt} and
-    \file{modal.pop.indiv.txt}
-    respectively.
-    @export
+    \file{modal.pop.indiv.txt}    respectively.
 }

@@ -11,7 +11,7 @@ Plotntile(path.mcmc,burnin,printit=FALSE,file)
     should be printed
  @param burnin An integer: number of saved iterations to discard for
     the representation of the histogram of the chain
-    @export
+ @export
 }
 \description{
 Plot of number of tiles in the Poisson-Voronoi tessellation

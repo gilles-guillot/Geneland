@@ -1,9 +1,8 @@
 #' EstimateFreqNA
 #' @description Estimate frequencies of null alleles at each locus.
-#'   @param path.mcmc path to directory containing stored MCMC computations
-#' @return A vector of length \code{nloc} (the number of loci) whose entries
-#'   are estimated frequencies of null alleles.
-#'   @export 
+#' @param path.mcmc path to directory containing stored MCMC computations
+#' @return A vector of length \code{nloc} (the number of loci) whose entries  are estimated frequencies of null alleles.
+#' @export 
 EstimateFreqNA <- function(path.mcmc)
 {
   fileparam <- paste(path.mcmc,"parameters.txt",sep="")

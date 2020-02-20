@@ -11,7 +11,6 @@ A list with elements:
     genotypes (matrix with one line per individual and
       one or two columns per locus with alleles coded by integers) and 
  allele.numbers (a vector giving the number of possible alleles per locus
- @export
 }
 \description{
 Takes genotype data as a matrix with

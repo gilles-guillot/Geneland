@@ -9,7 +9,8 @@
 #'   @param printit Logical : if TRUE, figures are also printed
 #'   @param path Character : Path to directory where figures
 #'     should be printed
-#'     @export
+#' @export
+#' 
 PlotTessellation <- function(coordinates,path.mcmc,printit=FALSE,path)
   {
     coordinates <- as.matrix(coordinates)

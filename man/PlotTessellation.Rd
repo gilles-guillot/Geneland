@@ -11,7 +11,6 @@ PlotTessellation(coordinates, path.mcmc,printit,path)
   @param printit Logical : if TRUE, figures are also printed
   @param path Character : Path to directory where figures
     should be printed
-    @export
 }
 \description{
 Plots maps of posterior probabilities  of population

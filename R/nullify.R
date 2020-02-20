@@ -6,7 +6,7 @@
 #'  @param nloc.null number of loci carrying null alleles
 #' @return A list with component: 
 #'    @param genotypes  The new genotypes after alteration.
-#'     @export
+#' @export
 nullify <- function(genotypes,nall.null=1,nloc.null)
   {
     ## simulate a null allele for each allele in nall.null

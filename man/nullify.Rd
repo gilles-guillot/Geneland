@@ -12,7 +12,6 @@ nullify(genotypes, nall.null = 1, nloc.null)
 \value{
 A list with component: 
    @param genotypes  The new genotypes after alteration.
-    @export
 }
 \description{
 Simulates null alleles

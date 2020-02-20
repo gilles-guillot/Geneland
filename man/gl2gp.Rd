@@ -8,8 +8,7 @@ gl2gp(coordinates, genotypes, file)
 }
 \value{
 An ascci file is written. This file may need to be
-  process in order to convert eol character from unix style to dos style. 
-  @export
+  process in order to convert eol character from unix style to dos style.
 }
 \description{
 Takes the matrices  of  coordinates and genotypes in the Geneland format

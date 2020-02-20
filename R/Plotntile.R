@@ -8,7 +8,7 @@
 #'     should be printed
 #'  @param burnin An integer: number of saved iterations to discard for
 #'     the representation of the histogram of the chain
-#'     @export
+#'  @export
 Plotntile <- function(path.mcmc,burnin,printit=FALSE,file)
   {
     fileparam <- paste(path.mcmc,"parameters.txt",sep="/")

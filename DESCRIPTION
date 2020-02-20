@@ -1,6 +1,6 @@
 Package: Geneland
 Title: Clustering of living organisms from geo-referenced genetic and/or morphometrics data
-Version: 4.9.1
+Version: 4.9.2
 Authors@R: 
     person(given = "Gilles",
            family = "Guillot",

@@ -7,7 +7,7 @@
 #'     where the data in Genepop format should be written
 #' @return An ascci file is written. This file may need to be
 #'   process in order to convert eol character from unix style to dos style. 
-#'   @export
+#' @export
 gl2gp <- function(coordinates,genotypes,file)
   {
     ## recode missing values as 0

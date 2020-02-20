@@ -22,7 +22,7 @@ R package [devtools](https://cran.r-project.org/web/packages/devtools/index.html
 `devtools::install_github('gilles-guillot/Geneland', build_vignettes = TRUE)`
 
 or if you do not have pdflatex installed, simply: 
-`devtools::install_github('gilles-guillot/Geneland') 
+`devtools::install_github('gilles-guillot/Geneland')`
 
 ## Getting started
 

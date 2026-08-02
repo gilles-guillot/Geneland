@@ -387,8 +387,6 @@ HZ <- function(coordinates,
                     as.double(b.max),
                     as.double(c.max),
                     as.double(dist.IC),
-                    as.integer(nchar.path.adm),
-                    as.character(path.mcmc.adm),
                     as.integer(nit),
                     as.integer(thinning),
                     as.integer(estimate.a),
@@ -398,16 +396,18 @@ HZ <- function(coordinates,
                     as.double(delta.b),
                     as.integer(common.param),
                     as.integer(nitstor),
-                    as.double(qout),
-                    as.double(aout),
-                    as.double(bout),
-                    as.double(cout))
+                    ## Named: positional indices shift whenever an
+                    ## argument is added or removed.
+                    qout = as.double(qout),
+                    aout = as.double(aout),
+                    bout = as.double(bout),
+                    cout = as.double(cout))
 
     ## unwrap mcmc outputs
-    qout <- array(dim=c(nitstor,nindiv,npop.est),data=res[[39]])
-    aout <- matrix(nrow=nitstor,ncol=npop.est,data=res[[40]])
-    bout <- matrix(nrow=nitstor,ncol=npop.est,data=res[[41]])
-    cout <- matrix(nrow=nitstor,ncol=npop.est,data=res[[42]])
+    qout <- array(dim=c(nitstor,nindiv,npop.est),data=res$qout)
+    aout <- matrix(nrow=nitstor,ncol=npop.est,data=res$aout)
+    bout <- matrix(nrow=nitstor,ncol=npop.est,data=res$bout)
+    cout <- matrix(nrow=nitstor,ncol=npop.est,data=res$cout)
 
     for(iitstor in 1:(nit/thinning))
       {

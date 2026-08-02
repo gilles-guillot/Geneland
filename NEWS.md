@@ -115,7 +115,8 @@ Improvements over the base-graphics equivalents:
 ## Packaging
 
 Version 4.9.2 could not be checked at all — `R CMD check` aborted with an
-ERROR. `R CMD check --as-cran` now reports 2 NOTEs on Linux.
+ERROR. `R CMD check --as-cran` now reports a single NOTE on Linux, and that
+NOTE is the CRAN archival record, which no code change can clear.
 
 * `DESCRIPTION`: `Description` is now a proper sentence; `tcltk` moved from
   `Depends` to `Imports`; `parallel` declared (it was used by the Tk interface
@@ -176,13 +177,49 @@ Writing the suite turned up four defects, now fixed:
 * `geom_label(label.size = )` is deprecated in ggplot2 3.5.0; the minimum
   ggplot2 version is now 3.5.0.
 
+## No more Fortran file I/O
+
+The compiled code no longer opens, reads or closes files; the package now
+passes `R CMD check --as-cran` with **`checking compiled code ... OK`**.
+
+* `PostProcessChain()` reads the chain in R and passes it to Fortran as
+  arrays. Previously `postprocesschain2` and `pppmindiv2` opened nine and five
+  files respectively and parsed them themselves.
+
+* This fixes a crash, not just a check NOTE. None of those reads carried an
+  `iostat=` guard, so a truncated or missing chain file called `abort()` and
+  killed the whole R session — `try()` could not catch it, and unsaved work in
+  the session was lost. The same input now raises an ordinary R error naming
+  the file and what was wrong with it.
+
+* The last `character` arguments to `.Fortran` are gone (16 in 4.9.2, 0 now).
+  Passing character to `.Fortran` is deprecated and truncates at 255
+  characters. `mcmchz` was still being handed a path it had stopped using, as
+  `mcmcgld` was.
+
+* `perm.txt` was written by R and immediately read back by Fortran. The
+  permutation is now passed directly in memory. The file is still written, as
+  it is a documented output.
+
+* Native routines are registered (`R_registerRoutines`,
+  `R_useDynamicSymbols(FALSE)`), so R checks the argument count at call time.
+  With routines taking 63, 47 and 40 arguments, and a history of argument
+  lists drifting out of step with the R side, this matters.
+
+* Removed `pppmindivmultchain` (194 lines), which was unreachable — never
+  called from R or from any other routine — and was the last place still
+  doing Fortran I/O.
+
+Verified unchanged: every file written by `PostProcessChain()` is
+bit-identical before and after, and the sampler checksums still match 4.9.2.
+
 ## Known limitations
 
-* `PostProcessChain()` and `HZ()` still do their own file I/O from Fortran,
-  which is the remaining `R CMD check` NOTE. Because those reads carry no
-  `iostat=` guard, a truncated or missing chain file aborts the R process
-  rather than raising a catchable R error. Moving the reads into R is planned.
-
+* The only remaining `R CMD check --as-cran` NOTE is `New submission /
+  Package was archived on CRAN`. Getting back onto CRAN needs a submission
+  comment explaining what was fixed, not a code change.
+* The package has been checked on Linux only (x86_64, gfortran 11). Windows
+  and macOS, and a newer gfortran, have not been exercised.
 * `Fstat()` and the plotting functions carry the most test coverage; the
   hybrid-zone model (`HZ()`, `show.estimate.hz()`) and the simulation
   functions are exercised only lightly.

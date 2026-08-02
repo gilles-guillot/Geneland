@@ -12288,13 +12288,15 @@ c      write(*,*) 'usegeno2=',usegeno2
       subroutine  postprocesschain2(nxdommax,nydommax,burnin,ninrub,
      &     npopmax,nppmax,nindiv,nlocd,nloch,nql,ncolt,
      &     nal,nalmax,xlim,ylim,dt,nit,
-     &     thinning,filenpop,filenpp,fileu,filec,filef,fileperm,filedom,
-     &     filemeanqtc,filemeanf,s,u,c,f,pivot,fpiv,fmean,dom,coorddom,
+     &     thinning,npopall,nppall,uall,colall,fall,mqall,
+     &     s,u,c,f,pivot,fpiv,fmean,dom,coorddom,
      &     indcel,distcel,order,ordertmp,npopest,usegeno2,usegeno1,
      &     useql,useqtc,nqtc,meanqtc,meanqtcpiv,nitsaved,outorderf)
       implicit none
-      character*255 fileu,filec,filenpp,filenpop,filedom,filef,fileperm,
-     &      filemeanqtc,filemeanf
+*     The chain is now passed in as arrays; R reads the files. Fortran I/O
+*     here used to abort the whole R process on a short or missing file.
+      integer npopall,nppall,colall
+      double precision uall,fall,mqall
       integer nit,thinning,npp,npop,iit,nindiv,nxdommax,
      &     nydommax,npopmax,ipp,nppmax,c,ixdom,iydom,idom,indcel,
      &     ipop,nlocd,nloch,nql,ncolt,nal,nalmax,ijunk,order,ordertmp,
@@ -12312,22 +12314,10 @@ c      write(*,*) 'usegeno2=',usegeno2
      &     f(npopmax,ncolt,nalmax),fpiv(npopmax,ncolt,nalmax),
      &     fmean(npopmax,ncolt,nalmax),
      &     nal(ncolt),meanqtc(npopmax,nqtc),meanqtcpiv(npopmax,nqtc),
-     &     outorderf(nitsaved,npopmax)
-
-      open(9,file=filenpop)
-      open(10,file=filenpp)
-      open(11,file=fileu)
-      open(12,file=filec)
-      if(((usegeno2 .eq. 1) .or. (usegeno1 .eq. 1)) .or. 
-     &     (useql .eq. 1)) then  
-         open(13,file=filef)
-         open(17,file=filemeanf)
-      endif
-      open(14,file=fileperm)
-      open(15,file=filedom)
-      if(useqtc .eq. 1) then
-         open(16,file=filemeanqtc)
-      endif
+     &     outorderf(nitsaved,npopmax),
+     &     npopall(nitsaved),nppall(nitsaved),uall(2,nppmax,nitsaved),
+     &     colall(nppmax,nitsaved),fall(npopmax,ncolt,nalmax,nitsaved),
+     &     mqall(npopmax,nqtc,nitsaved)
 
 c      write(6,*) 'debut postproc order=',order
 
@@ -12356,18 +12346,22 @@ c            write(6,*) 'iydom=',iydom
 *     read value of pivot state   
       nnit = 0
       do iit=1,int(dble(nit)/dble(thinning))
-         read(9,*) npop
+         npop = npopall(iit)
          if(((usegeno2 .eq. 1) .or. (usegeno1 .eq. 1)) .or. 
      &        (useql .eq. 1)) then
             do iloc=1,ncolt
                do ial=1,nalmax
-                  read(13,*) (f(ipop,iloc,ial),ipop=1,npopmax)
+                  do ipop=1,npopmax
+                     f(ipop,iloc,ial) = fall(ipop,iloc,ial,iit)
+                  enddo
                enddo
             enddo
          endif
          if(useqtc .eq. 1) then
             do ipop=1,npopmax
-                read(16,*) (meanqtc(ipop,iqtc),iqtc=1,nqtc)
+               do iqtc=1,nqtc
+                  meanqtc(ipop,iqtc) = mqall(ipop,iqtc,iit)
+               enddo
             enddo
          endif
          if((npop .eq. npopest) .and. (iit .gt. burnin)) then 
@@ -12393,14 +12387,7 @@ c            write(6,*) 'iydom=',iydom
             endif
          endif
       enddo
-      rewind 9
-      if(((usegeno2 .eq. 1) .or. (usegeno1 .eq. 1)) .or. 
-     &     (useql .eq. 1)) then
-         rewind 13
-      endif
-      if(useqtc .eq. 1) then
-         rewind 16
-      endif
+*     (no rewind needed: the chain is indexed, not streamed)
 
 
 **************
@@ -12409,25 +12396,30 @@ c      write(6,*) 'relabel'
       nnit = 0
       iitmodK = 0
       do iit=1,int(dble(nit)/dble(thinning))
-         read(9,*) npop
-         read(10,*) npp
+         npop = npopall(iit)
+         npp = nppall(iit)
          do ipp=1,nppmax
-            read(11,*) u(1,ipp),u(2,ipp)
-            read(12,*) c(ipp)
+            u(1,ipp) = uall(1,ipp,iit)
+            u(2,ipp) = uall(2,ipp,iit)
+            c(ipp) = colall(ipp,iit)
          enddo
 
-*     read current state
+*     current state
          if(((usegeno2 .eq. 1) .or. (usegeno1 .eq. 1)) .or. 
      &        (useql .eq. 1)) then
             do iloc=1,ncolt
                do ial=1,nalmax
-                  read(13,*) (f(ipop,iloc,ial),ipop=1,npopmax)
+                  do ipop=1,npopmax
+                     f(ipop,iloc,ial) = fall(ipop,iloc,ial,iit)
+                  enddo
                enddo
             enddo  
          endif
          if(useqtc .eq. 1) then
             do ipop = 1,npopmax
-               read(16,*) (meanqtc(ipop,iqtc),iqtc=1,nqtc)
+               do iqtc = 1,nqtc
+                  meanqtc(ipop,iqtc) = mqall(ipop,iqtc,iit)
+               enddo
             enddo
          endif
 
@@ -12502,20 +12494,6 @@ c$$$         write(15,2000) coorddom(1,idom),  coorddom(2,idom),
 c$$$     &        (dom(idom,ipop), ipop=1,npopmax)
 c$$$      enddo
 c      write(*,*) coorddom
-      close(9)
-      close(10)
-      close(11)
-      close(12)
-      if(((usegeno2 .eq. 1) .or. (usegeno1 .eq. 1)) .or. 
-     &     (useql .eq. 1)) then  
-         close(13)
-         close(17)
-      endif
-      close(14)
-      close(15)
-      if(useqtc .eq. 1) then 
-         close(16)
-      endif                  
       end subroutine postprocesschain2
 
 c$$$
@@ -12729,8 +12707,9 @@ c$$$
 *     posterior probability of population membership for individuals
 *
       subroutine  pppmindiv2(nindiv,s,npopmax,nppmax,
-     &     indcell,distcell,u,c,pmp,filenpop,filenpp,fileu,filec,
-     &     fileperm,nit,thinning,burnin,order,npopest,pivot)
+     &     indcell,distcell,u,c,pmp,npopall,nppall,uall,colall,
+     &     ordall,nitsaved,
+     &     nit,thinning,burnin,order,npopest,pivot)
       implicit none
  
       integer npopmax,nppmax,nindiv,indcell,npop,npp,c,
@@ -12738,11 +12717,15 @@ c$$$
       double precision pmp,distcell,u,s
 
       integer iit,ipp,iindiv,ipop,nnit,iitsub
-      character*255 filenpop,fileu,filec,filenpp,fileperm
-      
+*     The chain is passed in as arrays; R reads the files. Fortran I/O here
+*     used to abort the whole R process on a short or missing file.
+      integer npopall,nppall,colall,ordall,nitsaved,iperm
+      double precision uall
 
       dimension indcell(nindiv),distcell(nindiv),
-     &     pmp(nindiv,npopmax),u(2,nppmax),c(nppmax),s(2,nindiv)
+     &     pmp(nindiv,npopmax),u(2,nppmax),c(nppmax),s(2,nindiv),
+     &     npopall(nitsaved),nppall(nitsaved),uall(2,nppmax,nitsaved),
+     &     colall(nppmax,nitsaved),ordall(nitsaved,npopmax)
 c$$$      write(6,*) '      **********************************************'
 c$$$      write(6,*) '      *  Computing posterior probabilities          '
 c$$$      write(6,*) '      *  of population membership for individuals   '
@@ -12764,23 +12747,25 @@ c$$$      write(*,*) 'burnin=',burnin,'\n'
 c$$$      write(*,*) 'iit=',iit
 c$$$      write(*,*) 'ipp=',ipp
 c$$$      write(*,*) 'npp=',npp, '\n'
-      open(9,file=filenpop)
-      open(10,file=filenpp)
-      open(11,file=fileu)
-      open(12,file=filec)
-      open(13,file=fileperm)
       nnit = 0 
+      iperm = 0
       do iit=1,int(float(nit)/float(thinning))
-         read(9,*) npop
-         read(10,*) npp
+         npop = npopall(iit)
+         npp = nppall(iit)
          do ipp=1,nppmax
-            read(11,*) u(1,ipp),u(2,ipp)
-            read(12,*) c(ipp)
+            u(1,ipp) = uall(1,ipp,iit)
+            u(2,ipp) = uall(2,ipp,iit)
+            c(ipp) = colall(ipp,iit)
          enddo
          if((npop .eq. npopest) .and. (iit .gt. burnin)) then 
             nnit = nnit + 1 
             if(npopest .lt. 10) then
-               read(13,*) (order(ipop),ipop=1,npopmax)
+*     perm.txt was read sequentially, one row per kept iteration; iperm
+*     reproduces that file position exactly.
+               iperm = iperm + 1
+               do ipop=1,npopmax
+                  order(ipop) = ordall(iperm,ipop)
+               enddo
             endif
             if((npopest .lt. 10) .or. (nnit .eq. pivot)) then 
                call calccell(nindiv,s,npp,nppmax,u,indcell,distcell)
@@ -12798,11 +12783,7 @@ c$$$      write(*,*) 'npp=',npp, '\n'
             enddo
          enddo
       endif
-      close(9)
-      close(10)
-      close(11)
-      close(12)
-      close(13)
+
 
 c$$$      write(*,*) 'nindiv=',nindiv
 c$$$      write(*,*) 's=',s
@@ -12829,200 +12810,11 @@ c$$$      write(*,*) 'npp=',npp, '\n'
 *********************************************************************
 *     posterior probability of population membership for individuals
 *
-      subroutine  pppmindivmultchain(nindiv,s,npopmax,nppmax,
-     &     indcell,distcell,u,c,pmp,pathall,nchpathall,nrun,
-     &     nit,thinning,burnin,order,npopest,pivot)
-      implicit none
- 
-      integer npopmax,nppmax,nindiv,indcell,npop,npp,c,nrun,
-     &     nit,burnin,npopest,order(npopmax),thinning,pivot,
-     &     nchpathall
-      double precision pmp,distcell,u,s
-      character*255 pathall
-
-      integer iit,ipp,iindiv,ipop,nnit,iitsub,irun,nchpath,resirun
-      character*255 path,filenpop,fileu,filec,filenpp,fileperm
-      
-
-      dimension indcell(nindiv),distcell(nindiv),
-     &     pmp(nindiv,npopmax),u(2,nppmax),c(nppmax),s(2,nindiv)
-c$$$      write(6,*) '      **********************************************'
-c$$$      write(6,*) '      *  Computing posterior probabilities          '
-c$$$      write(6,*) '      *  of population membership for individuals   '
-c$$$      write(6,*) '      **********************************************'
-c$$$      write(*,*) 'nindiv=',nindiv
-c$$$      write(*,*) 's=',s
-c$$$      write(*,*) 'npopmax=',npopmax
-c$$$      write(*,*) 'nppmax=',nppmax
-c$$$c$$$      write(*,*) 'indcell=',indcell
-c$$$c$$$      write(*,*) 'distcell=',distcell
-c$$$c$$$      write(*,*) 'u=',u
-c$$$c$$$      write(*,*) 'c=',c
-c$$$c$$$      write(*,*) 'pmp=',pmp
-c$$$      write(*,*) 'filenpp=',filenpp
-c$$$      write(*,*) 'fileu=',fileu
-c$$$      write(*,*) 'filec=',filec
-c$$$      write(*,*) 'nit=',nit
-c$$$      write(*,*) 'burnin=',burnin,'\n'
-c$$$      write(*,*) 'iit=',iit
-c$$$      write(*,*) 'ipp=',ipp
-c$$$      write(*,*) 'npp=',npp, '\n'
-
-      fileperm = pathall(1:nchpathall) // "/perm.txt"
-      open(13,file=fileperm)
-
-      nnit = 0
-      do iit=1,int(float(nrun*nit)/float(thinning))
-         irun = 1 + aint(float(iit-1)/(float(nit)/float(thinning)))
-         if(mod(iit-1,int(float(nit)/float(thinning))) .eq. 0) then 
-c            write(*,*) 'iit=',iit
-c            write(*,*) 'irun=',irun
-*     open files
-c           write(*,*) 'opening files'
-c            write(*,*) 'pathall=',pathall
-*     cf book M Ain, p. 340 
-            resirun = irun
-            if(irun .gt. 999)then 
-               path = pathall(1:nchpathall) // 
-     &              char(int(aint(float(irun)/1000)) + ichar('0'))
-               nchpath = nchpathall + 1
-               resirun = resirun - 1000*int(aint(float(irun)/1000))
-               path = path(1:nchpath) // 
-     &              char(int(aint(float(resirun)/100)) + ichar('0'))
-               nchpath = nchpath + 1
-               resirun = resirun - 100*int(aint(float(resirun)/100))
-               path = path(1:nchpath) // 
-     &              char(int(aint(float(resirun)/10)) + ichar('0'))
-               path = path(1:nchpath) //
-     &              char(resirun + ichar('0'))
-               nchpath = nchpath + 1
-c               write(*,*) 'path=',path
-            endif
-            if((irun .gt. 99) .and. (irun .le. 999))then 
-               path = pathall(1:nchpathall) // 
-     &              char(int(aint(float(irun)/100)) + ichar('0'))
-               nchpath = nchpathall + 1
-               resirun = resirun - 100*int(aint(float(irun)/100))
-               path = path(1:nchpath) // 
-     &              char(int(aint(float(resirun)/10)) + ichar('0'))
-               resirun = resirun - 10*int(aint(float(resirun)/10))
-               path = path(1:nchpath) //
-     &              char(resirun + ichar('0'))
-               nchpath = nchpath + 1
-c               write(*,*) 'path=',path
-            endif
-            if((irun .gt. 9) .and. (irun .le. 99)) then 
-               path = pathall(1:nchpathall) // 
-     &              char(int(aint(float(irun)/10)) + ichar('0'))
-               nchpath = nchpathall + 1
-               resirun = resirun - 10*int(aint(float(irun)/10))
-               path = path(1:nchpath) // 
-     &              char(resirun + ichar('0'))
-               nchpath = nchpath + 1
-c               write(*,*) 'path=',path
-            endif
-            if(irun .le. 9) then 
-               path = pathall(1:nchpathall) // char(irun + ichar('0'))
-               nchpath = nchpathall + 1
-            endif
-            filenpp = path(1:nchpath) // "/nuclei.numbers.txt"
-            filenpop = path(1:nchpath) // "/populations.numbers.txt"
-            fileu = path(1:nchpath) // "/coord.nuclei.txt"
-            filec = path(1:nchpath) // "/color.nuclei.txt"           
-            open(9,file=filenpop)
-            open(10,file=filenpp)
-            open(11,file=fileu)
-            open(12,file=filec)
-         endif
-*     do the real job now
-         read(9,*) npop
-         read(10,*) npp
-         do ipp=1,nppmax
-            read(11,*) u(1,ipp),u(2,ipp)
-            read(12,*) c(ipp)
-         enddo
-         if((npop .eq. npopest) .and. (iit .gt. burnin)) then 
-            nnit = nnit + 1 
-            if(npopest .lt. 10) then
-               read(13,*) (order(ipop),ipop=1,npopmax)
-            endif
-            if((npopest .lt. 10) .or. (iit .eq. pivot)) then 
-               call calccell(nindiv,s,npp,nppmax,u,indcell,distcell)
-               do iindiv=1,nindiv
-                  ipop = order(c(indcell(iindiv)))
-                  pmp(iindiv,ipop) =  pmp(iindiv,ipop) + 1.
-               enddo
-            endif
-         endif
-*     close files
-         if(mod(iit,int(float(nit)/float(thinning))) .eq. 0) then 
-            close(9)
-            close(10)
-            close(11)
-            close(12)
-         endif
-      enddo
-      close(13)
-c$$$CCCCCCCCCCCCCCCCCCCCCCCCCCCC
-c$$$      open(9,file=filenpop)
-c$$$      open(10,file=filenpp)
-c$$$      open(11,file=fileu)
-c$$$      open(12,file=filec)
-c$$$      open(13,file=fileperm)
-c$$$      nnit = 0 
-c$$$      do iit=1,int(float(nit)/float(thinning))
-c$$$         read(9,*) npop
-c$$$         read(10,*) npp
-c$$$         do ipp=1,nppmax
-c$$$            read(11,*) u(1,ipp),u(2,ipp)
-c$$$            read(12,*) c(ipp)
-c$$$         enddo
-c$$$         if((npop .eq. npopest) .and. (iit .gt. burnin)) then 
-c$$$            nnit = nnit + 1 
-c$$$            if(npopest .lt. 10) then
-c$$$               read(13,*) (order(ipop),ipop=1,npopmax)
-c$$$            endif
-c$$$            if((npopest .lt. 10) .or. (iit .eq. pivot)) then 
-c$$$               call calccell(nindiv,s,npp,nppmax,u,indcell,distcell)
-c$$$               do iindiv=1,nindiv
-c$$$                  ipop = order(c(indcell(iindiv)))
-c$$$                  pmp(iindiv,ipop) =  pmp(iindiv,ipop) + 1.
-c$$$               enddo
-c$$$            endif
-c$$$         endif
-c$$$      enddo
-c$$$      if(npopest .lt. 10) then
-c$$$         do iindiv=1,nindiv 
-c$$$            do ipop=1,npopmax
-c$$$               pmp(iindiv,ipop) = pmp(iindiv,ipop)/float(nnit)
-c$$$            enddo
-c$$$         enddo
-c$$$      endif
-c$$$      close(9)
-c$$$      close(10)
-c$$$      close(11)
-c$$$      close(12)
-c$$$      close(13)
-c$$$CCCCCCCCCCCCCCCCCCCCCCCCCCCc
-
-c$$$      write(*,*) 'nindiv=',nindiv
-c$$$      write(*,*) 's=',s
-c$$$      write(*,*) 'npopmax=',npopmax
-c$$$      write(*,*) 'nppmax=',nppmax
-c$$$c$$$      write(*,*) 'indcell=',indcell
-c$$$c$$$      write(*,*) 'distcell=',distcell
-c$$$c$$$      write(*,*) 'u=',u
-c$$$c$$$      write(*,*) 'c=',c
-c$$$c$$$      write(*,*) 'pmp=',pmp
-c$$$      write(*,*) 'filenpp=',filenpp
-c$$$      write(*,*) 'fileu=',fileu
-c$$$      write(*,*) 'filec=',filec
-c$$$      write(*,*) 'nit=',nit
-c$$$      write(*,*) 'burnin=',burnin,'\n'
-c$$$      write(*,*) 'iit=',iit
-c$$$      write(*,*) 'ipp=',ipp
-c$$$      write(*,*) 'npp=',npp, '\n'
-      end subroutine  pppmindivmultchain
+***********************************************************************
+*     subroutine pppmindivmultchain was removed in Geneland 5.0.0.
+*     It was never called from R or from any other routine, and it was
+*     the last place in the package still doing Fortran file I/O.
+***********************************************************************
 
 
 ************************************************

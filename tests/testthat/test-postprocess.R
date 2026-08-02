@@ -49,3 +49,68 @@ test_that("PostProcessChain() rejects a path that does not end in a separator", 
     PostProcessChain(coordinates = dat$coord, path.mcmc = bad,
                      nxdom = 10, nydom = 10, burnin = 1))
 })
+
+test_that("a truncated chain file raises a catchable error, not a crash", {
+  skip_on_cran()
+
+  ## Before 5.0.0 the reads happened in Fortran with no iostat= guard, so a
+  ## short file called abort() and killed the R process outright -- try()
+  ## could not catch it. This is the regression guard for that.
+  src <- gl_fixture_run_raw()
+  dst <- gl_new_dir("truncated")
+  file.copy(list.files(src, full.names = TRUE), dst)
+
+  f <- file.path(dst, "frequencies.txt")
+  writeLines(readLines(f, warn = FALSE)[1:5], f)
+
+  dat <- gl_example_data()
+  err <- tryCatch(
+    utils::capture.output(
+      PostProcessChain(coordinates = dat$coord, path.mcmc = dst,
+                       nxdom = 10, nydom = 10, burnin = 1)),
+    error = conditionMessage)
+
+  expect_type(err, "character")
+  expect_match(err, "frequencies.txt")
+  expect_match(err, "truncated")
+})
+
+test_that("a missing chain file names the file and the write.* option", {
+  skip_on_cran()
+
+  src <- gl_fixture_run_raw()
+  dst <- gl_new_dir("missing-chain")
+  file.copy(list.files(src, full.names = TRUE), dst)
+  file.remove(file.path(dst, "coord.nuclei.txt"))
+
+  dat <- gl_example_data()
+  err <- tryCatch(
+    utils::capture.output(
+      PostProcessChain(coordinates = dat$coord, path.mcmc = dst,
+                       nxdom = 10, nydom = 10, burnin = 1)),
+    error = conditionMessage)
+
+  expect_match(err, "coord.nuclei.txt")
+  expect_match(err, "missing")
+})
+
+test_that("no character argument is passed to .Fortran any more", {
+  skip_on_cran()
+
+  ## Passing character to .Fortran is deprecated and emits a warning; the
+  ## whole point of moving the file reading into R was to stop doing it.
+  ## Work on a copy: post-processing the shared raw fixture in place would
+  ## break the tests that rely on it being un-post-processed.
+  dat <- gl_example_data()
+  path <- gl_new_dir("no-char-arg")
+  file.copy(list.files(gl_fixture_run_raw(), full.names = TRUE), path)
+  w <- character()
+  withCallingHandlers(
+    utils::capture.output(
+      PostProcessChain(coordinates = dat$coord, path.mcmc = path,
+                       nxdom = 10, nydom = 10, burnin = 1)),
+    warning = function(x) {
+      w <<- c(w, conditionMessage(x)); invokeRestart("muffleWarning")
+    })
+  expect_length(grep("char vector to .Fortran", w), 0)
+})

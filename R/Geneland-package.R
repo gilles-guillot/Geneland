@@ -45,5 +45,5 @@
 ## namespace rather than maintain a list that silently rots.
 #' @import tcltk
 ##
-#' @useDynLib Geneland
+#' @useDynLib Geneland, .registration = TRUE
 NULL

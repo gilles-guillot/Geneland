@@ -156,7 +156,25 @@ PostProcessChain <- function(coordinates=NULL,#data
     filedomperm <- paste(path.mcmc,"proba.pop.membership.perm.txt",sep="")
     filemeanqtc <- paste(path.mcmc,"mean.qtc.txt",sep="")
     filemeanf <- paste(path.mcmc,"mean.freq.txt",sep="")
-    
+
+    ## Read the chain here rather than in Fortran. Fortran had no iostat=
+    ## guard on any of its reads, so a truncated or missing output file
+    ## aborted the whole R process instead of raising a catchable error.
+    read.chain <- function(file, what, expected, label)
+      {
+        if(!file.exists(file))
+          stop("File '", basename(file), "' is missing from ", path.mcmc,
+               ".\nIt is written by MCMC() only when the matching write.* ",
+               "option is TRUE.", call.=FALSE)
+        v <- scan(file, what=what, quiet=TRUE)
+        if(length(v) != expected)
+          stop("File '", basename(file), "' holds ", length(v), " values but ",
+               expected, " were expected for ", label,
+               ".\nThe file looks truncated or does not match ",
+               "parameters.txt.", call.=FALSE)
+        v
+      }
+
 
     ## #############################
     ## estimate npop from MCMC run
@@ -194,6 +212,26 @@ PostProcessChain <- function(coordinates=NULL,#data
     ## objects to be written on external text files
     nitsaved <- nit/thinning
     out.orderf <- matrix(nrow=nit/thinning,ncol=npopmax,data=-999)
+    ## #############################
+    ## read the chain from disk (formerly done inside the Fortran code)
+    use.freq <- (use.geno2 | use.geno1 | use.ql)
+    npop.all <- read.chain(filenpop, integer(), nitsaved,
+                           "the number of populations")
+    npp.all  <- read.chain(filenpp, integer(), nitsaved,
+                           "the number of nuclei")
+    u.all    <- read.chain(fileu, double(), 2*nb.nuclei.max*nitsaved,
+                           "the nuclei coordinates")
+    col.all  <- read.chain(filec, integer(), nb.nuclei.max*nitsaved,
+                           "the nuclei colours")
+    ## Fortran read these with the leftmost index varying fastest, which is
+    ## the order scan() returns them in, so no permutation is needed.
+    f.all <- if(use.freq)
+      read.chain(filef, double(), npopmax*ncolt*nalmax*nitsaved,
+                 "the allele frequencies") else double(1)
+    mq.all <- if(use.qtc)
+      read.chain(filemeanqtc, double(), npopmax*nqtc*nitsaved,
+                 "the quantitative means") else double(1)
+
     ## #############################    
     ## computes posterior probabilities of population membership
     ## for pixels of the grid
@@ -218,24 +256,21 @@ PostProcessChain <- function(coordinates=NULL,#data
                        as.double(delta.coord),
                        as.integer(nit),
                        as.integer(thinning),
-                       as.character(filenpop),
-                       as.character(filenpp),
-                       as.character(fileu),
-                       as.character(filec),
-                       as.character(filef),
-                       as.character(fileperm),
-                       as.character(filedom),
-                       as.character(filemeanqtc),
-                       as.character(filemeanf),
+                       as.integer(npop.all),
+                       as.integer(npp.all),
+                       as.double(u.all),
+                       as.integer(col.all),
+                       as.double(f.all),
+                       as.double(mq.all),
                        as.double(t(coordinates)),
                        as.double(u),
                        as.integer(c),
                        as.double(f),
                        as.integer(pivot),
                        as.double(fpiv),
-                       as.double(fmean),
-                       as.double(dom),
-                       as.double(coorddom),
+                       fmean = as.double(fmean),
+                       dom = as.double(dom),
+                       coorddom = as.double(coorddom),
                        as.integer(indvois),
                        as.double(distvois),
                        as.integer(orderf),
@@ -249,15 +284,17 @@ PostProcessChain <- function(coordinates=NULL,#data
                        as.double(meanqv),
                        as.double(meanqvpiv),
                        as.integer(nitsaved),
-                       as.integer(out.orderf))
+                       ## Named: the old positional indices silently shift
+                       ## whenever an argument is added or removed.
+                       outorderf = as.integer(out.orderf))
     print("End of Fortran function postprocesschain2")
 
     ## unpack and write some outputs on external text files
     out.orderf <- matrix(nrow=nit/thinning,ncol=npopmax,
-                         data=out.res[[50]])
+                         data=out.res$outorderf)
     write.table(out.orderf,file=paste(path.mcmc,"perm.txt",sep=""),
                 row.names=FALSE,col.names=FALSE,append=FALSE)
-    fmean <- array(dim=c(npopmax,ncolt,nalmax),data=out.res[[34]])
+    fmean <- array(dim=c(npopmax,ncolt,nalmax),data=out.res$fmean)
     for(iloc in 1:ncolt)
       {
         append <- ifelse(iloc==1,FALSE,TRUE)
@@ -265,8 +302,8 @@ PostProcessChain <- function(coordinates=NULL,#data
               paste(path.mcmc,"mean.freq.txt",sep=""),
               row.names=FALSE,col.names=FALSE,append=append)
       }
-    dom <- matrix(nrow=nxdom*nydom,ncol=npopmax,data=out.res[[35]])
-    coorddom <- matrix(nrow=2,ncol=nxdom*nydom,data=out.res[[36]])
+    dom <- matrix(nrow=nxdom*nydom,ncol=npopmax,data=out.res$dom)
+    coorddom <- matrix(nrow=2,ncol=nxdom*nydom,data=out.res$coorddom)
     write.table(cbind(t(coorddom),dom),
                 paste(path.mcmc,"proba.pop.membership.txt",sep=""),
                 append=FALSE)
@@ -303,19 +340,22 @@ PostProcessChain <- function(coordinates=NULL,#data
                        as.double(distvois),
                        as.double(u),
                        as.integer(c),
-                       as.double(pmp),
-                       as.character(filenpop),
-                       as.character(filenpp),
-                       as.character(fileu),
-                       as.character(filec),
-                       as.character(fileperm),
+                       pmp = as.double(pmp),
+                       as.integer(npop.all),
+                       as.integer(npp.all),
+                       as.double(u.all),
+                       as.integer(col.all),
+                       ## out.orderf is passed straight through: it used to be
+                       ## written to perm.txt here and read back by Fortran.
+                       as.integer(out.orderf),
+                       as.integer(nitsaved),
                        as.integer(nit),
                        as.integer(thinning),
                        as.integer(burnin),
                        as.integer(orderf),
                        as.integer(npop.est),
                        as.integer(pivot))
-    pmp <- matrix(nrow=nindiv,ncol=npopmax,data=out.res[[9]])
+    pmp <- matrix(nrow=nindiv,ncol=npopmax,data=out.res$pmp)
     mod.pop.indiv <- t(apply(pmp,1,order))[,npopmax]
 
     

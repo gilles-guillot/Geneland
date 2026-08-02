@@ -1,11 +1,11 @@
       subroutine mcmchz(q,qtmp,zcodom,zdom,zhap,codom,dom,hap,
      &     npop,npopmax,nindiv,f,nlocd,nloch,nalmax,
      &     alphadmix,alphadmixtmp,a,b,c,atmp,btmp,ctmp,amax,bmax,cmax,
-     &     dist,nchpath,path,nit,thinning,calluda,calludb,calludc,
+     &     dist,nit,thinning,calluda,calludb,calludc,
      &     calludq,deltab,compar,nitstor,qout,aout,bout,cout)
       implicit none
       integer npop,npopmax,nindiv,nlocd,nloch,nalmax,zcodom,zdom,zhap,
-     &     nit,thinning,nchpath,compar,codom,dom,hap,nitstor
+     &     nit,thinning,compar,codom,dom,hap,nitstor
       double precision f,q,qtmp,alphadmix,alphadmixtmp,a,b,c,
      &     atmp,btmp,ctmp,amax,bmax,cmax,dist,deltab,
      &     qout,aout,bout,cout
@@ -19,8 +19,6 @@
      &     bout(nitstor,npopmax),cout(nitstor,npopmax)
       integer iit,ipop,iindiv,calluda,calludb,calludc,calludq,iitstor
       double precision pct,lpriorq,llike
-      character*255 path, fileq, filea, fileb, filec, filellike, 
-     &     filelpriorq
 
  2000 format (300(1x,e15.8,1x))
 
@@ -32,12 +30,9 @@ c$$$         write(*,*) 'q(',iindiv,')=',(q(iindiv,ipop),ipop=1,npop)
 c$$$         write(*,*) 'qtmp(',iindiv,')=',(qtmp(iindiv,ipop),ipop=1,npop)
 c$$$      enddo
 
-      fileq = path(1:nchpath) // "q.txt"
-      filea = path(1:nchpath) // "a.txt"
-      fileb = path(1:nchpath) // "b.txt"
-      filec = path(1:nchpath) // "c.txt"
-      filellike = path(1:nchpath) // "llike.txt"
-      filelpriorq = path(1:nchpath) // "lpriorq.txt"
+*     Output file names used to be built here. mcmchz returns its results in
+*     the qout/aout/bout/cout arrays and R writes the files, so the path is
+*     no longer passed in (a character argument to .Fortran is deprecated).
 
 c$$$      open(9,file=fileq)
 c$$$      open(10,file=filea)

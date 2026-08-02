@@ -1,11 +1,10 @@
 #' @title nullify
 #' @description Simulates null alleles
-#' @usage nullify(genotypes, nall.null = 1, nloc.null)
-#'  @param genotypes  a matrix of genotypes as produced by simFmodel and simIBD
-#'  @param nall.null number of null alleles on each locus
-#'  @param nloc.null number of loci carrying null alleles
-#' @return A list with component: 
-#'    @param genotypes  The new genotypes after alteration.
+#' @param genotypes  a matrix of genotypes as produced by simFmodel and simIBD
+#' @param nall.null number of null alleles on each locus
+#' @param nloc.null number of loci carrying null alleles
+#' @return A list with one component, `genotypes`: the new genotypes after
+#'   alteration.
 #' @export
 nullify <- function(genotypes,nall.null=1,nloc.null)
   {

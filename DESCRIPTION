@@ -1,20 +1,43 @@
 Package: Geneland
-Title: Clustering of living organisms from geo-referenced genetic and/or morphometrics data
-Version: 4.9.2
-Authors@R: 
+Title: Clustering of Living Organisms from Geo-Referenced Genetic and
+    Morphometric Data
+Version: 5.0.0
+Authors@R:
     person(given = "Gilles",
            family = "Guillot",
            role = c("aut", "cre"),
            email = "gilles.b.guillot@gmail.com",
            comment = c(ORCID = "0000-0003-0675-8325"))
-Description: Bayesian model and MCMC inference from geo-referenced genetic/phenotypic data
+Description: Bayesian models and Markov chain Monte Carlo algorithms for the
+    inference of population genetic structure from geo-referenced individual
+    multi-locus genotypes and quantitative phenotypes. Individuals are
+    clustered into populations whose spatial extent is modelled by a coloured
+    Poisson-Voronoi tessellation. Allele frequencies may be treated as
+    independent across populations or as correlated through a common ancestral
+    population.
 License: GPL-3
 Encoding: UTF-8
-LazyData: true  
-Depends: tcltk
-Suggests: mapproj,maps,PBSmapping,RandomFields,fields
+Depends:
+    R (>= 3.5.0)
+Imports:
+    ggplot2 (>= 3.5.0),
+    graphics,
+    grDevices,
+    parallel,
+    rlang,
+    stats,
+    tcltk,
+    utils
+Suggests:
+    bslib,
+    fields,
+    knitr,
+    rmarkdown,
+    shiny,
+    testthat (>= 3.0.0)
 NeedsCompilation: yes
 URL: https://github.com/gilles-guillot/Geneland
 BugReports: https://github.com/gilles-guillot/Geneland/issues
-RoxygenNote: 7.0.0.9000
+RoxygenNote: 8.0.0
 VignetteBuilder: knitr
+Config/testthat/edition: 3

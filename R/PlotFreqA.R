@@ -2,12 +2,11 @@
 #' @description Plot frequency of  allele \code{iall}  of locus \code{iloc}
 #'   in ancestral population
 #' 
-#' @usage PlotFreqA(path.mcmc,iloc,iall,printit=FALSE,path)
-#'  @param path.mcmc  Path to output files directory 
-#'  @param iloc Integer number : index of locus
-#'  @param iall Integer number : index of allele
-#'  @param printit Logical : if TRUE, figures are also printed
-#'  @param path Character : Path to directory where figures
+#' @param path.mcmc  Path to output files directory 
+#' @param iloc Integer number : index of locus
+#' @param iall Integer number : index of allele
+#' @param printit Logical : if TRUE, figures are also printed
+#' @param path Character : Path to directory where figures
 #'     should be printed
 #' @export
 PlotFreqA <- function(path.mcmc,iloc,iall,printit=FALSE,path)

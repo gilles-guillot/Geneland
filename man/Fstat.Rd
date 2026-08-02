@@ -6,6 +6,18 @@
 \usage{
 Fstat(genotypes, npop, pop.mbrship, ploidy = 2)
 }
+\arguments{
+\item{genotypes}{Diploid codominant genotype data. A matrix with one line per
+individual and 2 columns per locus}
+
+\item{npop}{total number of popluation present in the dataset}
+
+\item{pop.mbrship}{Vector of integers giving the population membership
+for each individual}
+
+\item{ploidy}{Integer: 1 or 2 (default is 2) under development. Do
+not use for haploid data.}
+}
 \value{
 A list with components 
   Fis  (vector of estimations of within-population Fis)
@@ -20,11 +32,4 @@ Computes F statistics according to Weir and Cockerham's
   The presence of missing values involves a downward bias in the
   computation of Fis.
   This function should not be used on haploid data.
-   @param genotypes Diploid codominant genotype data. A matrix with one line per
-    individual and 2 columns per locus
-  @param npop total number of popluation present in the dataset
-  @param pop.mbrship Vector of integers giving the population membership
-    for each individual
-   @param ploidy Integer: 1 or 2 (default is 2) under development. Do
-     not use for haploid data.
 }

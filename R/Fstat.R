@@ -6,12 +6,12 @@
 #'   The presence of missing values involves a downward bias in the
 #'   computation of Fis.
 #'   This function should not be used on haploid data.
-#'    @param genotypes Diploid codominant genotype data. A matrix with one line per
+#' @param genotypes Diploid codominant genotype data. A matrix with one line per
 #'     individual and 2 columns per locus
-#'   @param npop total number of popluation present in the dataset
-#'   @param pop.mbrship Vector of integers giving the population membership
+#' @param npop total number of popluation present in the dataset
+#' @param pop.mbrship Vector of integers giving the population membership
 #'     for each individual
-#'    @param ploidy Integer: 1 or 2 (default is 2) under development. Do
+#' @param ploidy Integer: 1 or 2 (default is 2) under development. Do
 #'      not use for haploid data.
 #' 
 #' @return A list with components 

@@ -4,11 +4,15 @@
 \alias{PlotDrift}
 \title{PlotDrift}
 \usage{
-PlotDrift(path.mcmc,printit=FALSE,file)
-  @param path.mcmc  Path to output files directory 
-  @param printit Logical : if TRUE, figures are also printed
-  @param file Character : Path to file where figures
-    should be printed
+PlotDrift(path.mcmc, printit = FALSE, file)
+}
+\arguments{
+\item{path.mcmc}{Path to output files directory}
+
+\item{printit}{Logical : if TRUE, figures are also printed}
+
+\item{file}{Character : Path to file where figures
+should be printed}
 }
 \description{
 Gives a plot of the trace of the drift factors along the

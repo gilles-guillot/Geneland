@@ -1,12 +1,26 @@
-#' Geneland.GUI
-#' @description  Launch a menu driven interface to package Geneland
+#' Legacy Tk interface to Geneland
+#'
+#' @description The Tk menu-driven interface shipped by Geneland up to version
+#'   4.9.2. It is retained unchanged so that no functionality is lost, but it
+#'   is no longer the interface [Geneland.GUI()] starts: that now launches the
+#'   Shiny application, which is where new work happens.
+#'
+#'   This function needs a working Tcl/Tk installation and cannot run on a
+#'   headless machine.
+#'
 #' @param lib.loc A character string giving the path to the directory
 #'         where Geneland is installed
+#' @return Invoked for its side effect.
+#' @seealso [run_geneland_app()] for the current interface.
+#' @examples
+#' \dontrun{
+#' Geneland.GUI.tcltk()
+#' }
 #' @export
 
 
-Geneland.GUI <-
-function (lib.loc = NULL) 
+Geneland.GUI.tcltk <-
+function (lib.loc = NULL)
 {
     # require(tcltk)
     tt <- tktoplevel()
@@ -476,7 +490,7 @@ function (lib.loc = NULL)
                   silent = TRUE)
                 tkdestroy(tttry)
                 print("Done.")
-                if (class(err) == "try-error") {
+                if (inherits(err, "try-error")) {
                   Log(paste("MCMC(coordinates=", matrix2str(globalcoordinates), 
                     ",geno.dip.dom =", matrix2str(globaldominantgenotypes), 
                     ",geno.dip.codom =", matrix2str(globalcodominantgenotypes), 
@@ -776,7 +790,7 @@ function (lib.loc = NULL)
                     jcf = as.logical(tclvalue(jcf)), filter.null.alleles = as.logical(tclvalue(null))), 
                     silent = TRUE)
                   print("Done")
-                  if (class(err) == "try-error") {
+                  if (inherits(err, "try-error")) {
                     Log(paste("MCMC(coordinates=", matrix2str(globalcoordinates), 
                       ",geno.dip.dom =", matrix2str(globaldominantgenotypes), 
                       ",geno.dip.codom =", matrix2str(globalcodominantgenotypes), 
@@ -1218,7 +1232,7 @@ function (lib.loc = NULL)
                 silent = TRUE)
             tkdestroy(tttry)
             print("Done.")
-            if (class(err) == "try-error") {
+            if (inherits(err, "try-error")) {
                 Log(paste("PostProcessChain(coordinates=", matrix2str(globalcoordinates), 
                   ",path.mcmc=\"", tclvalue(outputdir), "\",nxdom=", 
                   as.numeric(tclvalue(nxdom)), ",nydom=", as.numeric(tclvalue(nydom)), 
@@ -1255,7 +1269,7 @@ function (lib.loc = NULL)
             print("Starting...")
             err <- try(EstimateFreqNA(path.mcmc = tclvalue(outputdir)), 
                 silent = TRUE)
-            if (class(err) == "try-error") {
+            if (inherits(err, "try-error")) {
                 Log(paste("EstimateFreqNA(path.mcmc=\"", tclvalue(outputdir), 
                   "\")", sep = ""), "[FAILED] ")
                 tkmessageBox(message = err, icon = "error", type = "ok", 
@@ -1381,7 +1395,7 @@ function (lib.loc = NULL)
                     path.mcmc.adm = tclvalue(outputadm)), silent = TRUE)
                   tkdestroy(tttry)
                   print("Done.")
-                  if (class(err) == "try-error") {
+                  if (inherits(err, "try-error")) {
                     Log(paste("HZ(coordinates=", matrix2str(globalcoordinates), 
                       ",geno.dip.dom=", matrix2str(globaldominantgenotypes), 
                       ",geno.dip.codom=", matrix2str(globalcodominantgenotypes), 
@@ -1582,7 +1596,7 @@ function (lib.loc = NULL)
                   file.plot.gen = file.plot.gen), silent = TRUE)
                 tkdestroy(tttry)
                 print("Done")
-                if (class(err) == "try-error") {
+                if (inherits(err, "try-error")) {
                   tkmessageBox(message = err, icon = "error", 
                     type = "ok", parent = tt)
                 }
@@ -1760,7 +1774,7 @@ function (lib.loc = NULL)
                 }
                 tkdestroy(tttry)
                 print("Done.")
-                if (class(err) == "try-error") {
+                if (inherits(err, "try-error")) {
                   if (tclvalue(printit) == 1) {
                     Log(paste("PlotDrift(path.mcmc=\"", tclvalue(outputdir), 
                       "\",printit=TRUE,file=\"", tclvalue(printfile), 
@@ -1851,7 +1865,7 @@ function (lib.loc = NULL)
                 }
                 tkdestroy(tttry)
                 print("Done.")
-                if (class(err) == "try-error") {
+                if (inherits(err, "try-error")) {
                   if (tclvalue(printit) == 1) {
                     Log(paste("PlotFreq(path.mcmc=\"", tclvalue(outputdir), 
                       "\",ipop=", as.numeric(tclvalue(ipop)), 
@@ -1967,7 +1981,7 @@ function (lib.loc = NULL)
                 }
                 tkdestroy(tttry)
                 print("Done.")
-                if (class(err) == "try-error") {
+                if (inherits(err, "try-error")) {
                   if (tclvalue(printit) == 1) {
                     Log(paste("PlotFreqA(path.mcmc=\"", tclvalue(outputdir), 
                       "\",iloc=", as.numeric(tclvalue(iloc)), 
@@ -2077,7 +2091,7 @@ function (lib.loc = NULL)
                   }
                   tkdestroy(tttry)
                   print("Done.")
-                  if (class(err) == "try-error") {
+                  if (inherits(err, "try-error")) {
                     if (tclvalue(printit) == 1) {
                       Log(paste("PlotTessellation(coordinates=", 
                         matrix2str(globalcoordinates), ",path.mcmc=\"", 
@@ -2177,7 +2191,7 @@ function (lib.loc = NULL)
                 }
                 tkdestroy(tttry)
                 print("Done.")
-                if (class(err) == "try-error") {
+                if (inherits(err, "try-error")) {
                   if (tclvalue(printit) == 1) {
                     Log(paste("Plotnpop(path.mcmc=\"", tclvalue(outputdir), 
                       "\",burnin=", tclvalue(burnin), ",printit=TRUE,file=\"", 
@@ -2263,7 +2277,7 @@ function (lib.loc = NULL)
                 Sys.sleep(0.5)
                 file <- try(scan(paste(tclvalue(outputdir), "log.posterior.density.txt", 
                   sep = "")), silent = TRUE)
-                if (class(file) == "try-error") {
+                if (inherits(file, "try-error")) {
                   tkmessageBox(message = "File hasn't been created or bad output path", 
                     type = "ok", parent = tt)
                 }
@@ -2288,7 +2302,7 @@ function (lib.loc = NULL)
                   }
                   tkdestroy(tttry)
                   print("Done.")
-                  if (class(file) == "try-error") {
+                  if (inherits(file, "try-error")) {
                     if (tclvalue(printit) == 1) {
                       Log(paste("postscript(\"", tclvalue(printfile), 
                         "\")", sep = ""))
@@ -2392,7 +2406,7 @@ function (lib.loc = NULL)
                 }
                 tkdestroy(tttry)
                 print("Done.")
-                if (class(err) == "try-error") {
+                if (inherits(err, "try-error")) {
                   if (tclvalue(printit) == 1) {
                     Log(paste("Plotntile(path.mcmc=\"", tclvalue(outputdir), 
                       "\",burnin=", tclvalue(burnin), ",printit=TRUE,file=\"", 
@@ -2494,7 +2508,7 @@ function (lib.loc = NULL)
                   }
                   tkdestroy(tttry)
                   print("Done.")
-                  if (class(err) == "try-error") {
+                  if (inherits(err, "try-error")) {
                     if (tclvalue(printit) == 1) {
                       Log(paste("PosteriorMode(coordinates=", 
                         matrix2str(globalcoordinates), ",path.mcmc=\"", 
@@ -2604,7 +2618,7 @@ function (lib.loc = NULL)
                   angle = as.numeric(tclvalue(angle))), silent = TRUE)
                 tkdestroy(tttry)
                 print("Done.")
-                if (class(err) == "try-error") {
+                if (inherits(err, "try-error")) {
                   Log(paste("show.estimate.hz(coordinates=", 
                     matrix2str(globalcoordinates), ",path.mcmc.adm=\"", 
                     tclvalue(outputadm), "\",burnin=", as.numeric(tclvalue(burnin)), 
@@ -2890,7 +2904,7 @@ function (lib.loc = NULL)
             ShowtextFis <- function() {
                 file <- try(read.table(paste(tclvalue(outputdir), 
                   "Fis.txt", sep = "")), silent = TRUE)
-                if (class(file) == "try-error") {
+                if (inherits(file, "try-error")) {
                   tkmessageBox(message = "File hasn't been created or bad output path", 
                     type = "ok", parent = tt)
                 }
@@ -2948,7 +2962,7 @@ function (lib.loc = NULL)
             ShowtextFst <- function() {
                 file <- try(read.table(paste(tclvalue(outputdir), 
                   "Fst.txt", sep = "")), silent = TRUE)
-                if (class(file) == "try-error") {
+                if (inherits(file, "try-error")) {
                   tkmessageBox(message = "File hasn't been created or bad output path", 
                     type = "ok", parent = tt)
                 }
@@ -3031,7 +3045,7 @@ function (lib.loc = NULL)
                 silent = TRUE)
             tkdestroy(tttry)
             print("Done.")
-            if (class(err) == "try-error") {
+            if (inherits(err, "try-error")) {
                 Log(paste("Fstat.output(coordinates=NULL,genotypes=", 
                   matrix2str(globalcodominantgenotypes), ",ploidy=2,burnin=NULL,path.mcmc=\"", 
                   tclvalue(outputdir), "\")", sep = ""), "[FAILED] ")
@@ -3111,7 +3125,7 @@ function (lib.loc = NULL)
                   silent = TRUE)
                 tkdestroy(tttry)
                 print("Done.")
-                if (class(idb.dataset) == "try-error") {
+                if (inherits(idb.dataset, "try-error")) {
                   tkmessageBox(message = idb.dataset, icon = "error", 
                     type = "ok", parent = tt)
                   idb.dataset <<- 0
@@ -3299,7 +3313,7 @@ function (lib.loc = NULL)
                   silent = TRUE)
                 tkdestroy(tttry)
                 print("Done.")
-                if (class(err) == "try-error") {
+                if (inherits(err, "try-error")) {
                   Log(paste("gl2gp(coordinates=", matrix2str(globalcodominantgenotypes), 
                     ",genotypes=", matrix2str(globaldiploidgenotypes), 
                     ",file=", tclvalue(filename), ")", sep = ""), 
@@ -3388,7 +3402,7 @@ function (lib.loc = NULL)
                   silent = TRUE)
                 tkdestroy(tttry)
                 print("Done.")
-                if (class(idb.dataset) == "try-error") {
+                if (inherits(idb.dataset, "try-error")) {
                   tkmessageBox(message = idb.dataset, icon = "error", 
                     type = "ok", parent = tt)
                   idb.dataset <<- 0
@@ -3612,7 +3626,7 @@ function (lib.loc = NULL)
                   silent = TRUE)
                 tkdestroy(tttry)
                 print("Done.")
-                if (class(err) == "try-error") {
+                if (inherits(err, "try-error")) {
                   tkmessageBox(message = err, icon = "error", 
                     type = "ok", parent = tt)
                   Log(paste("nullify(genotypes=", matrix2str(globaldiploidgenotypes), 
@@ -3711,7 +3725,7 @@ function (lib.loc = NULL)
         Sys.sleep(0.5)
         file <- try(read.table(paste(tclvalue(outputdir), filename, 
             sep = "")), silent = TRUE)
-        if (class(file) == "try-error") {
+        if (inherits(file, "try-error")) {
             tkmessageBox(message = "File hasn't been created or bad output path", 
                 type = "ok", parent = tt)
         }
@@ -3750,7 +3764,7 @@ function (lib.loc = NULL)
                   tkxview.moveto(txt, as.double(...))
                 })
             auxtxt <- ""
-            if (class(file2) == "try-error") {
+            if (inherits(file2, "try-error")) {
                 tkconfigure(left, font = tkfont.create(family = "courrier"), 
                   wrap = "none", width = numberofdigits(row + 
                     6), yscrollcommand = function(...) {
@@ -3825,7 +3839,7 @@ function (lib.loc = NULL)
         Sys.sleep(0.5)
         file <- try(read.table(paste(tclvalue(outputdir), filename, 
             sep = "")), silent = TRUE)
-        if (class(file) == "try-error") {
+        if (inherits(file, "try-error")) {
             tkmessageBox(message = "File hasn't been created or bad output path", 
                 type = "ok", parent = tt)
         }
@@ -3927,7 +3941,7 @@ function (lib.loc = NULL)
         Sys.sleep(0.5)
         file <- try(read.table(paste(tclvalue(outputdir), filename, 
             sep = "")), silent = TRUE)
-        if (class(file) == "try-error") {
+        if (inherits(file, "try-error")) {
             tkmessageBox(message = "File hasn't been created or bad output path", 
                 type = "ok", parent = tt)
         }
@@ -4027,7 +4041,7 @@ function (lib.loc = NULL)
         Sys.sleep(0.5)
         file <- try(scan(paste(tclvalue(outputdir), filename, 
             sep = "")), silent = TRUE)
-        if (class(file) == "try-error") {
+        if (inherits(file, "try-error")) {
             tkmessageBox(message = "File hasn't been created or bad output path", 
                 type = "ok", parent = tt)
         }
@@ -4125,7 +4139,7 @@ function (lib.loc = NULL)
             else {
                 cluster <<- try(makeCluster(as.numeric(tclvalue(processors)), 
                   type = tclvalue(pmethod)), silent = TRUE)
-                if (class(cluster) == "try-error") {
+                if (inherits(cluster, "try-error")) {
                   tkmessageBox(message = paste("Error, please read snow package documentation.\n The received error message was:", 
                     cluster, sep = "\n"), icon = "error", type = "ok", 
                     parent = ttpara)
@@ -4441,14 +4455,14 @@ function (lib.loc = NULL)
         if (auxblink == 1) {
             error <- try(tkconfigure(extralabel.widget, text = ""), 
                 silent = TRUE)
-            if (class(error) == "try-error") 
+            if (inherits(error, "try-error")) 
                 tkdestroy(tt)
             auxblink <<- 0
         }
         else if (auxblink == 0) {
             error <- try(tkconfigure(extralabel.widget, text = "Please configure output directory"), 
                 silent = TRUE)
-            if (class(error) == "try-error") 
+            if (inherits(error, "try-error")) 
                 tkdestroy(tt)
             auxblink <<- 1
         }

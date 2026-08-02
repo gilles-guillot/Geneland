@@ -1,8 +1,8 @@
 GenelandStartupMessage <- function()
 {
   msg <- c(paste0(
-    "Geneland   version ", 
-    packageVersion("Geneland")),
+    "Geneland   version ",
+    utils::packageVersion("Geneland")),
     "\nType 'citation(\"Geneland\")' for citing this R package in publications.")
   return(msg)
 }
@@ -12,7 +12,7 @@ GenelandStartupMessage <- function()
   # startup message
   msg <- GenelandStartupMessage()
   if(!interactive())
-    msg[1] <- paste("Package 'Geneland' version", packageVersion("Geneland"))
-  packageStartupMessage(msg)      
+    msg[1] <- paste("Package 'Geneland' version", utils::packageVersion("Geneland"))
+  packageStartupMessage(msg)
   invisible()
 }

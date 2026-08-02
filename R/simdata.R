@@ -102,7 +102,7 @@
 #'   individuals coming into the computation of the differentiation of the barriers
 #'   should be plotted 
 #' @export
-#'
+#' 
 #' @examples \dontrun{
 #' dataset <- simdata(nindiv=100,
 #'                    sim.gen=TRUE,
@@ -242,14 +242,14 @@ simdata <- function(nindiv,
        ## RandomFileds package format
        if(IBD)
          {
-           print("Calling GaussRF")
-           ff <- GaussRF(x=coord.all[1,],
-                         y=coord.all[2,],
-                         grid=FALSE,
-                         model=model,
-                         param=c(0,1,0,beta,gamma),##param=c(mean, variance, nugget, scale, ...). Here ‘...’ stands for additional parameters such as ν in the whittle model.
-                         n=sum(allele.numbers)*npop)
-           print("End of GaussRF")
+           ## param = c(mean, variance, nugget, scale, ...), where '...'
+           ## stands for extra parameters such as nu in the Whittle model.
+           ff <- gg_GaussRF(x=coord.all[1,],
+                            y=coord.all[2,],
+                            grid=FALSE,
+                            model=model,
+                            param=c(0,1,0,beta,gamma),
+                            n=sum(allele.numbers)*npop)
          }else
        {
          ff <- matrix(nrow=ncol(coord.all),

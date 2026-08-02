@@ -1,10 +1,9 @@
 #' @title PlotDrift
 #' @description Gives a plot of the trace of the drift factors along the
 #'   MCMC run 
-#' @usage PlotDrift(path.mcmc,printit=FALSE,file)
-#'   @param path.mcmc  Path to output files directory 
-#'   @param printit Logical : if TRUE, figures are also printed
-#'   @param file Character : Path to file where figures
+#' @param path.mcmc  Path to output files directory 
+#' @param printit Logical : if TRUE, figures are also printed
+#' @param file Character : Path to file where figures
 #'     should be printed
 #' @export
 PlotDrift <- function(path.mcmc,printit=FALSE,file)

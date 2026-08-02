@@ -4,13 +4,19 @@
 \alias{PlotFreqA}
 \title{PlotFreqA}
 \usage{
-PlotFreqA(path.mcmc,iloc,iall,printit=FALSE,path)
- @param path.mcmc  Path to output files directory 
- @param iloc Integer number : index of locus
- @param iall Integer number : index of allele
- @param printit Logical : if TRUE, figures are also printed
- @param path Character : Path to directory where figures
-    should be printed
+PlotFreqA(path.mcmc, iloc, iall, printit = FALSE, path)
+}
+\arguments{
+\item{path.mcmc}{Path to output files directory}
+
+\item{iloc}{Integer number : index of locus}
+
+\item{iall}{Integer number : index of allele}
+
+\item{printit}{Logical : if TRUE, figures are also printed}
+
+\item{path}{Character : Path to directory where figures
+should be printed}
 }
 \description{
 Plot frequency of  allele \code{iall}  of locus \code{iloc}

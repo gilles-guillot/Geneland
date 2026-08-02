@@ -7,10 +7,10 @@
 #'   If a locus  has 7 alleles they will be coded as 1,2,...7.
 #'   Since version 1.0.1, this function does not have to be called by
 #'   users. It is called through MCMC.
-#'  @param genotypes A matrix with
+#' @param genotypes A matrix with
 #'     one line per individual and two columns per locus,
 #'     with alleles coded by integers
-#'  @param ploidy 1 or 2
+#' @param ploidy 1 or 2
 #' @return 
 #'   A list with elements: 
 #'     genotypes (matrix with one line per individual and

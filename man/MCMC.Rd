@@ -161,7 +161,7 @@ with \code{freq.model="Uncorrelated"}.}
 \item{prop.update.cell}{Integer between 0 and 1. Proportion of cell updated. For
 debugging only.}
 
-\item{write.rate.Poisson.process}{Logical: if TRUE (default) write rate
+\item{write.rate.Poisson.process}{Logical: if TRUE (default is FALSE) write rate
 of Poisson process simulated by MCMC}
 
 \item{write.number.nuclei}{Logical: if TRUE (default) write number of nuclei simulated by MCMC}
@@ -174,30 +174,30 @@ of nuclei simulated by MCMC}
 \item{write.color.nuclei}{Logical: if TRUE (default) write color of
 nuclei simulated by MCMC}
 
-\item{write.freq}{Logical: if TRUE (default is FALSE) write allele
+\item{write.freq}{Logical: if TRUE (default is TRUE) write allele
 frequencies simulated by MCMC}
 
-\item{write.ancestral.freq}{Logical: if TRUE (default is FALSE) write
+\item{write.ancestral.freq}{Logical: if TRUE (default is TRUE) write
 ancestral allele frequencies simulated by MCMC}
 
-\item{write.drifts}{Logical: if TRUE (default is FALSE) write drifts simulated by MCMC}
+\item{write.drifts}{Logical: if TRUE (default is TRUE) write drifts simulated by MCMC}
 
-\item{write.logposterior}{Logical: if TRUE (default is FALSE) write
+\item{write.logposterior}{Logical: if TRUE (default is TRUE) write
 logposterior simulated by MCMC}
 
-\item{write.loglikelihood}{Logical: if TRUE (default is FALSE) write
+\item{write.loglikelihood}{Logical: if TRUE (default is TRUE) write
 loglikelihood simulated by MCMC}
 
-\item{write.true.coord}{Logical: if TRUE (default is FALSE) write true
+\item{write.true.coord}{Logical: if TRUE (default is TRUE) write true
 spatial coordinates simulated by MCMC}
 
 \item{write.size.pop}{Logical: if TRUE (default is FALSE) write size of
 populations simulated by MCMC}
 
-\item{write.mean.quanti}{Logical: if TRUE (default is FALSE) write
+\item{write.mean.quanti}{Logical: if TRUE (default is TRUE) write
 means of quantitatives variables in the various groups simulated by MCMC}
 
-\item{write.sd.quanti}{Logical: if TRUE (default is FALSE) write
+\item{write.sd.quanti}{Logical: if TRUE (default is TRUE) write
 standard deviations of quantitatives variables in the various groups simulated by MCMC}
 
 \item{write.betaqtc}{Logical: if TRUE (default is FALSE) write
@@ -273,8 +273,12 @@ written in the directory  specified by \file{path.mcmc} as follows:
     current state of parameters in the Markov chain.
     
   }
- @references 
-        \itemize{
+}
+\description{
+Markov Chain Monte-Carlo inference of clusters from genotpype data
+}
+\references{
+\itemize{
 \item G. Guillot, Estoup, A., Mortier, F. Cosson, J.F. A spatial statistical
 model for landscape genetics. Genetics, 170, 1261-1280, 2005.
 
@@ -306,7 +310,4 @@ zones. Molecular Ecology Resources, 11(6) 1119-1123, 2011
 \item G. Guillot, S. Renaud, R. Ledevin, J. Michaux and J. Claude. A
 Unifying Model for the Analysis of Phenotypic, Genetic and Geographic
 Data. Systematic Biology, to appear, 2012.}
-}
-\description{
-Markov Chain Monte-Carlo inference of clusters from genotpype data
 }

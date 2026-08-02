@@ -4,19 +4,36 @@
 \alias{PosteriorMode}
 \title{PosteriorMode}
 \usage{
-PosteriorMode(coordinates,path.mcmc,plotit=TRUE,format="pdf",new.dev=TRUE,
-                printit=FALSE,file,main.title)
-  @param coordinates Spatial coordinates of individuals. A matrix with 2
-    columns and one line per individual.
-  @param path.mcmc  Path to output files directory 
-  @param plotit Logical: if TRUE the map is plotted
-  @param printit Logical : if TRUE, figures are also printed
-  @param format \code{"ps"} or \code{"pdf"}
-  @param file Character : Path to file where figures
-    should be printed
-  @param main.title Character : Title to appear on top of the graphic
-  @param new.dev Logical. Open a new graphical device if TRUE  and \code{printit}
-    is FALSE
+PosteriorMode(
+  coordinates,
+  path.mcmc,
+  plotit = TRUE,
+  format = "pdf",
+  new.dev = TRUE,
+  printit = FALSE,
+  file,
+  main.title = ""
+)
+}
+\arguments{
+\item{coordinates}{Spatial coordinates of individuals. A matrix with 2
+columns and one line per individual.}
+
+\item{path.mcmc}{Path to output files directory}
+
+\item{plotit}{Logical: if TRUE the map is plotted}
+
+\item{format}{\code{"ps"} or \code{"pdf"}}
+
+\item{new.dev}{Logical. Open a new graphical device if TRUE  and \code{printit}
+is FALSE}
+
+\item{printit}{Logical : if TRUE, figures are also printed}
+
+\item{file}{Character : Path to file where figures
+should be printed}
+
+\item{main.title}{Character : Title to appear on top of the graphic}
 }
 \description{
 Plots a map giving  the modal population as a color code for each pixel.

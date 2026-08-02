@@ -1,42 +1,28 @@
-#'  @title show.simdata
-#'  @description Graphical display of data simulated by simdata
-#'   @param dataset An R object produced by function \code{simdata}
-#'   @param plot.coord Logical
-#'   @param file.plot.coord Character string. Path to the file where the
+#' @title show.simdata
+#' @description Graphical display of data simulated by simdata
+#' @param dataset An R object produced by function \code{simdata}
+#' @param plot.coord Logical
+#' @param file.plot.coord Character string. Path to the file where the
 #'     graphic should be stored
-#'   @param plot.tess  Logical
-#'   @param file.plot.tess Character string. Path to the file where the
+#' @param plot.tess  Logical
+#' @param file.plot.tess Character string. Path to the file where the
 #'     graphic should be stored
-#'   @param plot.freq.grid Logical
-#'   @param file.plot.freq.grid Character string. Path to the file where the
+#' @param plot.freq.grid Logical
+#' @param file.plot.freq.grid Character string. Path to the file where the
 #'     graphic should be stored
-#'   @param loc.grid Vector of integers giving indices of loci for which the
+#' @param loc.grid Vector of integers giving indices of loci for which the
 #'     map of frequencies is required
-#'   @param plot.freq.indiv Logical
-#'   @param file.plot.freq.indiv Character string. Path to the file where the
+#' @param plot.freq.indiv Logical
+#' @param file.plot.freq.indiv Character string. Path to the file where the
 #'     graphic should be stored
-#'   @param loc.indiv Vector of integers giving indices of loci for which the
+#' @param loc.indiv Vector of integers giving indices of loci for which the
 #'     plot of frequencies at sites of individuals is required
-#'   @param plot.gen Logical
-#'   @param file.plot.gen Character string. Path to the file where the
+#' @param plot.gen Logical
+#' @param file.plot.gen Character string. Path to the file where the
 #'     graphic should be stored
-#'   @param zlim.freq A vector of two integers giving the limit of the
+#' @param zlim.freq A vector of two integers giving the limit of the
 #'     values for the image of fields of frequencies
 #' @export
-#' @usage show.simdata(dataset,
-#' plot.coord = FALSE,
-#' file.plot.coord,
-#' plot.tess = FALSE,
-#' file.plot.tess,
-#' plot.freq.grid = FALSE,
-#' file.plot.freq.grid,
-#' loc.grid = 1,
-#' plot.freq.indiv = FALSE,
-#' file.plot.freq.indiv,
-#' loc.indiv=1,
-#' zlim.freq=c(0,1),
-#' plot.gen = FALSE,
-#' file.plot.gen)
 show.simdata <- function(dataset,
                          plot.coord=FALSE,
                          file.plot.coord=NA,
@@ -157,8 +143,11 @@ show.simdata <- function(dataset,
                ##   setplot(seq(dataset$coord.lim[1],dataset$coord.lim[2],(dataset$coord.lim[2]-dataset$coord.lim[1])/10),
 ##                          seq(dataset$coord.lim[3],dataset$coord.lim[4],(dataset$coord.lim[4]-dataset$coord.lim[3])/10))
                 
-                look <- as.image(x=dataset$coord.indiv,Z=FF)
-                image.plot(look,main=paste("Field of frequencies for locus #",
+                if(!requireNamespace("fields", quietly=TRUE))
+                  stop("plot.freq.indiv = TRUE requires the 'fields' package.",
+                       call.=FALSE)
+                look <- fields::as.image(x=dataset$coord.indiv,Z=FF)
+                fields::image.plot(look,main=paste("Field of frequencies for locus #",
                                   iloc,"allele #",iall),asp=1)
                 points(dataset$coord.nuclei[1,],dataset$coord.nuclei[2,],col=2,cex=2,lwd=3)
                                         #text(dataset$coord.nuclei[1,],dataset$coord.nuclei[2,],dataset$color.nuclei,col=2,pos=1)

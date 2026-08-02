@@ -5,13 +5,17 @@
 \title{nullify}
 \usage{
 nullify(genotypes, nall.null = 1, nloc.null)
- @param genotypes  a matrix of genotypes as produced by simFmodel and simIBD
- @param nall.null number of null alleles on each locus
- @param nloc.null number of loci carrying null alleles
+}
+\arguments{
+\item{genotypes}{a matrix of genotypes as produced by simFmodel and simIBD}
+
+\item{nall.null}{number of null alleles on each locus}
+
+\item{nloc.null}{number of loci carrying null alleles}
 }
 \value{
-A list with component: 
-   @param genotypes  The new genotypes after alteration.
+A list with one component, `genotypes`: the new genotypes after
+  alteration.
 }
 \description{
 Simulates null alleles

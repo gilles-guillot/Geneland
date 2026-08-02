@@ -1,18 +1,16 @@
 #' @title PosteriorMode
 #' @description Plots a map giving  the modal population as a color code for each pixel.
 #' 
-#' @usage   PosteriorMode(coordinates,path.mcmc,plotit=TRUE,format="pdf",new.dev=TRUE,
-#'                 printit=FALSE,file,main.title)
-#'   @param coordinates Spatial coordinates of individuals. A matrix with 2
+#' @param coordinates Spatial coordinates of individuals. A matrix with 2
 #'     columns and one line per individual.
-#'   @param path.mcmc  Path to output files directory 
-#'   @param plotit Logical: if TRUE the map is plotted
-#'   @param printit Logical : if TRUE, figures are also printed
-#'   @param format \code{"ps"} or \code{"pdf"}
-#'   @param file Character : Path to file where figures
+#' @param path.mcmc  Path to output files directory 
+#' @param plotit Logical: if TRUE the map is plotted
+#' @param printit Logical : if TRUE, figures are also printed
+#' @param format \code{"ps"} or \code{"pdf"}
+#' @param file Character : Path to file where figures
 #'     should be printed
-#'   @param main.title Character : Title to appear on top of the graphic
-#'   @param new.dev Logical. Open a new graphical device if TRUE  and \code{printit}
+#' @param main.title Character : Title to appear on top of the graphic
+#' @param new.dev Logical. Open a new graphical device if TRUE  and \code{printit}
 #'     is FALSE
 #' @export
 PosteriorMode <- function(coordinates,path.mcmc,plotit=TRUE,format="pdf",new.dev=TRUE,

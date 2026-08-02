@@ -1,20 +1,17 @@
 #' @title PostProcessChain
 #' @description   Computes posterior probabilities of population membership for each pixel of the spatial domain. 
-#' @usage
-#'   PostProcessChain(coordinates,
-#'                    path.mcmc,nxdom, nydom,burnin)
-#'   @param coordinates Spatial coordinates of individuals. A matrix with 2
+#' @param coordinates Spatial coordinates of individuals. A matrix with 2
 #'     columns and one line per individual.
 #'   
-#'   @param path.mcmc  Path to output files directory 
+#' @param path.mcmc  Path to output files directory 
 #'   
-#'   @param nxdom Number of pixel for discretization of the spatial domain
+#' @param nxdom Number of pixel for discretization of the spatial domain
 #'     in the horizontal direction
 #'   
-#'   @param nydom Number of pixel for discretization of the spatial domain
+#' @param nydom Number of pixel for discretization of the spatial domain
 #'     in the vertical direction
 #'   
-#'   @param burnin Number of iterations of the chain to throw away.
+#' @param burnin Number of iterations of the chain to throw away.
 #'     WARNING : this argument should be given the number of stored
 #'     iterations (and not the number of computed iterations which differ
 #'                 if \code{thinning} !=1). If you have

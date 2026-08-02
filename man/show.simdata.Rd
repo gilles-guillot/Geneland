@@ -2,69 +2,62 @@
 % Please edit documentation in R/show.simdata.R
 \name{show.simdata}
 \alias{show.simdata}
-\title{@title show.simdata
- @description Graphical display of data simulated by simdata
-  @param dataset An R object produced by function \code{simdata}
-  @param plot.coord Logical
-  @param file.plot.coord Character string. Path to the file where the
-    graphic should be stored
-  @param plot.tess  Logical
-  @param file.plot.tess Character string. Path to the file where the
-    graphic should be stored
-  @param plot.freq.grid Logical
-  @param file.plot.freq.grid Character string. Path to the file where the
-    graphic should be stored
-  @param loc.grid Vector of integers giving indices of loci for which the
-    map of frequencies is required
-  @param plot.freq.indiv Logical
-  @param file.plot.freq.indiv Character string. Path to the file where the
-    graphic should be stored
-  @param loc.indiv Vector of integers giving indices of loci for which the
-    plot of frequencies at sites of individuals is required
-  @param plot.gen Logical
-  @param file.plot.gen Character string. Path to the file where the
-    graphic should be stored
-  @param zlim.freq A vector of two integers giving the limit of the
-    values for the image of fields of frequencies}
+\title{show.simdata}
 \usage{
-show.simdata(dataset,
-plot.coord = FALSE,
-file.plot.coord,
-plot.tess = FALSE,
-file.plot.tess,
-plot.freq.grid = FALSE,
-file.plot.freq.grid,
-loc.grid = 1,
-plot.freq.indiv = FALSE,
-file.plot.freq.indiv,
-loc.indiv=1,
-zlim.freq=c(0,1),
-plot.gen = FALSE,
-file.plot.gen)
+show.simdata(
+  dataset,
+  plot.coord = FALSE,
+  file.plot.coord = NA,
+  plot.tess = FALSE,
+  file.plot.tess = NA,
+  plot.freq.grid = FALSE,
+  file.plot.freq.grid = NA,
+  loc.grid = 1,
+  plot.freq.indiv = FALSE,
+  file.plot.freq.indiv = NA,
+  loc.indiv = 1,
+  zlim.freq = c(0, 1),
+  plot.gen = FALSE,
+  file.plot.gen = NA
+)
+}
+\arguments{
+\item{dataset}{An R object produced by function \code{simdata}}
+
+\item{plot.coord}{Logical}
+
+\item{file.plot.coord}{Character string. Path to the file where the
+graphic should be stored}
+
+\item{plot.tess}{Logical}
+
+\item{file.plot.tess}{Character string. Path to the file where the
+graphic should be stored}
+
+\item{plot.freq.grid}{Logical}
+
+\item{file.plot.freq.grid}{Character string. Path to the file where the
+graphic should be stored}
+
+\item{loc.grid}{Vector of integers giving indices of loci for which the
+map of frequencies is required}
+
+\item{plot.freq.indiv}{Logical}
+
+\item{file.plot.freq.indiv}{Character string. Path to the file where the
+graphic should be stored}
+
+\item{loc.indiv}{Vector of integers giving indices of loci for which the
+plot of frequencies at sites of individuals is required}
+
+\item{zlim.freq}{A vector of two integers giving the limit of the
+values for the image of fields of frequencies}
+
+\item{plot.gen}{Logical}
+
+\item{file.plot.gen}{Character string. Path to the file where the
+graphic should be stored}
 }
 \description{
-@title show.simdata
- @description Graphical display of data simulated by simdata
-  @param dataset An R object produced by function \code{simdata}
-  @param plot.coord Logical
-  @param file.plot.coord Character string. Path to the file where the
-    graphic should be stored
-  @param plot.tess  Logical
-  @param file.plot.tess Character string. Path to the file where the
-    graphic should be stored
-  @param plot.freq.grid Logical
-  @param file.plot.freq.grid Character string. Path to the file where the
-    graphic should be stored
-  @param loc.grid Vector of integers giving indices of loci for which the
-    map of frequencies is required
-  @param plot.freq.indiv Logical
-  @param file.plot.freq.indiv Character string. Path to the file where the
-    graphic should be stored
-  @param loc.indiv Vector of integers giving indices of loci for which the
-    plot of frequencies at sites of individuals is required
-  @param plot.gen Logical
-  @param file.plot.gen Character string. Path to the file where the
-    graphic should be stored
-  @param zlim.freq A vector of two integers giving the limit of the
-    values for the image of fields of frequencies
+Graphical display of data simulated by simdata
 }

@@ -4,13 +4,18 @@
 \alias{PlotTessellation}
 \title{PlotTessellation}
 \usage{
-PlotTessellation(coordinates, path.mcmc,printit,path)
-  @param coordinates Spatial coordinates of individuals. A matrix with 2
-    columns and one line per individual.
-  @param path.mcmc Character : Path to output files directory 
-  @param printit Logical : if TRUE, figures are also printed
-  @param path Character : Path to directory where figures
-    should be printed
+PlotTessellation(coordinates, path.mcmc, printit = FALSE, path)
+}
+\arguments{
+\item{coordinates}{Spatial coordinates of individuals. A matrix with 2
+columns and one line per individual.}
+
+\item{path.mcmc}{Character : Path to output files directory}
+
+\item{printit}{Logical : if TRUE, figures are also printed}
+
+\item{path}{Character : Path to directory where figures
+should be printed}
 }
 \description{
 Plots maps of posterior probabilities  of population

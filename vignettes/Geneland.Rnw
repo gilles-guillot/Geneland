@@ -1,3 +1,6 @@
+%\VignetteIndexEntry{Geneland: clustering of georeferenced genetic data}
+%\VignetteEngine{knitr::knitr}
+%\VignetteEncoding{UTF-8}
 \documentclass{article}
 \usepackage{natbib}
 \usepackage{makeidx}
@@ -41,7 +44,8 @@
 \pagestyle{fancy}
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+%% (\SweaveOpts{concordance=TRUE} removed: the vignette is built with knitr,
+%%  which does not define that macro. The document contains no code chunks.)
 
 \bibliographystyle{plainnat}
 
@@ -179,8 +183,8 @@ For other references, type {\tt citation(``Geneland'')} in the R prompt or see t
 {\sc Geneland} is an add-on to the free statistical software {\sc R}. 
 To install and run {\sc Geneland}, 
 you need first to have R installed on your computer. R is available for MS-Windows, Linux and Mac-OS. \\
-See \url{http://cran.r-project.org }.
-See \url{ http://en.wikipedia.org/wiki/R\_(programming\_language)} for details.\\
+See \url{https://CRAN.R-project.org/ }.
+See \url{ https://en.wikipedia.org/wiki/R\_(programming\_language)} for details.\\
 
 
  
@@ -206,10 +210,10 @@ model and storage options.
 
 \subsubsection{Installing R}
 Instructions for installation of R are continuously updated.\\
-See \url{ http://cran.r-project.org/sources.html } for details and update.
+See \url{ https://CRAN.R-project.org/sources.html } for details and update.
  
 
-Useful sources of information include the various R manuals \footnote{available from \url{http://cran.r-project.org}} and 
+Useful sources of information include the various R manuals \footnote{available from \url{https://CRAN.R-project.org/}} and 
 \citep{Paradis05,Paradis06} among others.
  
  
@@ -217,6 +221,19 @@ Useful sources of information include the various R manuals \footnote{available 
  
 As of version 4.9.0 (January 2020), Geneland is distributed via github.
 See \href{https://github.com/gilles-guillot/Geneland}{https://github.com/gilles-guillot/Geneland} for installation instructions.
+
+\paragraph{What is new in version 5.0.0.}
+The statistical model and the MCMC sampler are unchanged; for a given seed,
+\texttt{MCMC()} reproduces the output of version 4.9.2 exactly. What changed is
+the interface. \texttt{Geneland.GUI()} now opens a web-based interface built
+with \texttt{shiny} (the previous Tk interface is still available as
+\texttt{Geneland.GUI.tcltk()}, and is the one documented in
+Section~\ref{sec:gui}). Figures can now also be produced as
+\texttt{ggplot2} objects: \texttt{read\_geneland()} reads a run directory, and
+\texttt{autoplot()} on the result returns a plot that can be modified and
+saved by the caller. The \texttt{Plot*} functions described in this document
+are unchanged. The file \texttt{NEWS.md} in the installed package lists all
+the changes, including a number of bug fixes.
 
 \subsection{Tasks performed}  
 \subsubsection{Estimating the number of panmictic groups and locating their spatial boundaries}
@@ -956,14 +973,24 @@ are coded as {\tt NA}.
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Examples with the GUI]{Examples of data analysis using the graphical user interface (GUI)}
+\section[Examples with the GUI]{Examples of data analysis using the graphical user interface (GUI)}\label{sec:gui}
 
 \subsection{Launching the GUI}
+
+\noindent{\ggr\textbf{Note for version 5.0.0 and later.}} {\sc Geneland}
+now ships two graphical interfaces. \texttt{Geneland.GUI()} launches a
+web-based interface built with \texttt{shiny}, which covers the standard
+workflow (load data, choose a model, run the sampler, inspect the chain, view
+and export the maps). This chapter documents the older Tk interface, which is
+unchanged and remains available as \texttt{Geneland.GUI.tcltk()}; it still
+provides features the new interface does not yet have, namely parallel
+multiple runs, F-statistics, data simulation and the hybrid zone tools. The
+screenshots below are all of the Tk interface.\\
 
 \begin{itemize}
 \item launch R
 \item load {\sc Geneland} by typing \texttt{library(Geneland)} in the R prompt
-\item launch the {\sc Geneland} GUI by typing \texttt{Geneland.GUI()} in the R prompt.
+\item launch the Tk GUI by typing \texttt{Geneland.GUI.tcltk()} in the R prompt.
 \end{itemize}
 
 This will open open a window as below:\\
@@ -1693,17 +1720,17 @@ and try to a give a flavour of what is possible under R.
 
 \subsubsection{Resources}
 
-On the various formats and how to load them in R: \url{http://help.nceas.ucsb.edu/R:_Spatial}\\
+On the various formats and how to load them in R: \url{https://CRAN.R-project.org/view=Spatial}\\
 
-Loading data, converting coordinates, plotting: \url{http://sites.google.com/site/spatialr}\\
+Loading data, converting coordinates, plotting: \url{https://sites.google.com/site/spatialr}\\
 
-Data (climate, landcover, coastal lines, administrative boundaries: \url{http://www.fao.org/geonetwork}\\
+Data (climate, landcover, coastal lines, administrative boundaries: \url{https://data.apps.fao.org/catalog/}\\
 
 
 \subsubsection{Loading and plotting coastal lines}
 
 An example with the FAO World Food Summit Map Coastline and International boundary (dataset available as a shapefile 
-named wfs\_coas.shp from \url{http://www.fao.org/geonetwork}).
+named wfs\_coas.shp from \url{https://data.apps.fao.org/catalog/}).
 
 \medskip
 
@@ -2363,8 +2390,7 @@ Permutation of cluster labels allowing to get rid of the label switching issue.
 \nocite{Guillot05a,Guillot05c,Coulon06,Fontaine07,Guillot08b,Hannelius08,Guillot09c,Guillot09e,Guillot09g,
 Guillot09i,Guillot10b,Guillot11b,Guillot12a}
 
-%\bibliography{/media/SSD_Gilles/biogillesg/com/biblio/biblio,/media/SSD_Gilles/biogillesg/com/biblio/gilles}
-\bibliography{../inst/biblio,../inst/gilles}
+\bibliography{Geneland}
 
 %\include{./Geneland-Doc.bbl}  
 

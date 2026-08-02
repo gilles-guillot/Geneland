@@ -3,19 +3,18 @@
 #'   and optionnaly print it.
 #'   for allele \code{iall}  of locus \code{iloc}
 #' 
-#' @usage  PlotFreq(path.mcmc,ipop,iloc,iall,printit=FALSE,path)
 #
-#'  @param path.mcmc  Path to output files directory 
-#'  @param ipop Integer number : index of population
-#'  @param iloc Integer number : index of locus
-#'  @param iall Integer number : index of allele. If \code{MCMC}
+#' @param path.mcmc  Path to output files directory 
+#' @param ipop Integer number : index of population
+#' @param iloc Integer number : index of locus
+#' @param iall Integer number : index of allele. If \code{MCMC}
 #'     was launched with option \code{filter.null.alleles=TRUE}, an extra
 #'     fictive allele standing for putative null alleles is created. It
 #'     estimated frequency can be also plotted. If there is say, 5 alleles
 #'     at a locus, the estimated frequency of null alleles can be seen
 #'     invoking \code{PlotFreq} with \code{iall=6}.
-#'  @param printit Logical : if TRUE, figures are also printed
-#'  @param path Character : Path to directory where figures
+#' @param printit Logical : if TRUE, figures are also printed
+#' @param path Character : Path to directory where figures
 #'     should be printed
 #' @export
 PlotFreq <- function(path.mcmc,ipop,iloc,iall,printit=FALSE,path)

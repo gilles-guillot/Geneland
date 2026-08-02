@@ -4,26 +4,27 @@
 \alias{PostProcessChain}
 \title{PostProcessChain}
 \usage{
-PostProcessChain(coordinates,
-                   path.mcmc,nxdom, nydom,burnin)
-  @param coordinates Spatial coordinates of individuals. A matrix with 2
-    columns and one line per individual.
-  
-  @param path.mcmc  Path to output files directory 
-  
-  @param nxdom Number of pixel for discretization of the spatial domain
-    in the horizontal direction
-  
-  @param nydom Number of pixel for discretization of the spatial domain
-    in the vertical direction
-  
-  @param burnin Number of iterations of the chain to throw away.
-    WARNING : this argument should be given the number of stored
-    iterations (and not the number of computed iterations which differ
-                if \code{thinning} !=1). If you have
-    \code{nit}=100000 and \code{thinning}=100, then only 1000 iterations
-    are stored. Then \code{burnin}=10 will throw away 10 stored
-    iterations, namely 100*10 computed iterations.
+PostProcessChain(coordinates = NULL, path.mcmc, nxdom, nydom, burnin)
+}
+\arguments{
+\item{coordinates}{Spatial coordinates of individuals. A matrix with 2
+columns and one line per individual.}
+
+\item{path.mcmc}{Path to output files directory}
+
+\item{nxdom}{Number of pixel for discretization of the spatial domain
+in the horizontal direction}
+
+\item{nydom}{Number of pixel for discretization of the spatial domain
+in the vertical direction}
+
+\item{burnin}{Number of iterations of the chain to throw away.
+WARNING : this argument should be given the number of stored
+iterations (and not the number of computed iterations which differ
+            if \code{thinning} !=1). If you have
+\code{nit}=100000 and \code{thinning}=100, then only 1000 iterations
+are stored. Then \code{burnin}=10 will throw away 10 stored
+iterations, namely 100*10 computed iterations.}
 }
 \description{
 Computes posterior probabilities of population membership for each pixel of the spatial domain.

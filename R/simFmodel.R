@@ -3,7 +3,7 @@
 # + genotypes according to F-model or D-model
 #
 #' @title    Simulation of multi-locus genetic data from the spatial F-model
-#'
+#' 
 #' @param nindiv Simulation of multi-locus genetic data from the spatial F-model 
 #' @param coordinates Matrix (2 rows, nindiv columns) of spatial coordinates of individuals
 #' @param coord.lim Vector of limits of spatial domain to be considered (x min, x max, y min, y max)
@@ -21,7 +21,7 @@
 #' the absence of the "dominant" allele is coded as 0.
 #' @param plots Logical: if TRUE, spatial coordinates are ploted
 #' @param ploth Logical: if TRUE, barplots for allele frequencies are ploted
-#'
+#' 
 #' @return A list of variables involved in the simulation. The elements of
 #' this list are: 
 #'   coordinates, genotypes, allele.numbers, number.nuclei, coord.nuclei, color.nuclei, 

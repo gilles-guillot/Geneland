@@ -1,13 +1,12 @@
 #' @title  Plotnpop
 #' @description Gives a plot of the number of populations along the MCMC run
-#' @usage  Plotnpop(path.mcmc,burnin,printit=FALSE,file,format="pdf")
-#'   @param path.mcmc  Path to output files directory 
-#'   @param printit Logical : if TRUE, figures are also printed
-#'   @param file Character : Path to file where figures
+#' @param path.mcmc  Path to output files directory 
+#' @param printit Logical : if TRUE, figures are also printed
+#' @param file Character : Path to file where figures
 #'     should be printed
-#'   @param format format of the output file, should be either \code{"ps"}
+#' @param format format of the output file, should be either \code{"ps"}
 #'     or \code{"pdf"}
-#'   @param burnin An integer: number of saved iterations to discard for
+#' @param burnin An integer: number of saved iterations to discard for
 #'     the representation of the histogram of the chain
 #' @export
 #' 

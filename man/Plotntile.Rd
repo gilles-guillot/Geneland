@@ -4,14 +4,18 @@
 \alias{Plotntile}
 \title{Plotntile}
 \usage{
-Plotntile(path.mcmc,burnin,printit=FALSE,file)
- @param path.mcmc  Path to output files directory 
- @param printit Logical : if TRUE, figures are also printed
- @param file Character : Path to file where figures
-    should be printed
- @param burnin An integer: number of saved iterations to discard for
-    the representation of the histogram of the chain
- @export
+Plotntile(path.mcmc, burnin, printit = FALSE, file)
+}
+\arguments{
+\item{path.mcmc}{Path to output files directory}
+
+\item{burnin}{An integer: number of saved iterations to discard for
+the representation of the histogram of the chain}
+
+\item{printit}{Logical : if TRUE, figures are also printed}
+
+\item{file}{Character : Path to file where figures
+should be printed}
 }
 \description{
 Plot of number of tiles in the Poisson-Voronoi tessellation

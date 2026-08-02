@@ -2,13 +2,13 @@
 #' @description Computes F statistics according to Weir and Cockerham's 
 #'   estimators.    Missing values are allowed but as of today, the NA code is only treated as an extra
 #'   allele which might bias the result. This function should not be used on haploid data.
-#'   @param coordinates Matrix with one line per individual and two columns
-#'    @param genotypes Genotypes of individuals. A matrix with one line per
+#' @param coordinates Matrix with one line per individual and two columns
+#' @param genotypes Genotypes of individuals. A matrix with one line per
 #'      individual and 2 columns per locus
-#'    @param burnin Integer: number of saved iterations to discard.
-#'    @param ploidy Integer: 1 or 2 (default is 2).
+#' @param burnin Integer: number of saved iterations to discard.
+#' @param ploidy Integer: 1 or 2 (default is 2).
 #'      Do not use for haploid data.
-#'   @param path.mcmc  Path to output files directory 
+#' @param path.mcmc  Path to output files directory 
 #' @return A list with components 
 #'  Pairwise.Fis (matrix of real numbers estimating the pairwise Fis) and 
 #'  Pairwise.Fst (matrix of real numbers estimating the pairwise Fs

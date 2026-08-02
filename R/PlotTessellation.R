@@ -1,13 +1,11 @@
 #' @title PlotTessellation
 #' @description Plots maps of posterior probabilities  of population
 #'   membership for each population
-#' @usage
-#'   PlotTessellation(coordinates, path.mcmc,printit,path)
-#'   @param coordinates Spatial coordinates of individuals. A matrix with 2
+#' @param coordinates Spatial coordinates of individuals. A matrix with 2
 #'     columns and one line per individual.
-#'   @param path.mcmc Character : Path to output files directory 
-#'   @param printit Logical : if TRUE, figures are also printed
-#'   @param path Character : Path to directory where figures
+#' @param path.mcmc Character : Path to output files directory 
+#' @param printit Logical : if TRUE, figures are also printed
+#' @param path Character : Path to directory where figures
 #'     should be printed
 #' @export
 #' 

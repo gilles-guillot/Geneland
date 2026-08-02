@@ -4,15 +4,21 @@
 \alias{Plotnpop}
 \title{Plotnpop}
 \usage{
-Plotnpop(path.mcmc,burnin,printit=FALSE,file,format="pdf")
-  @param path.mcmc  Path to output files directory 
-  @param printit Logical : if TRUE, figures are also printed
-  @param file Character : Path to file where figures
-    should be printed
-  @param format format of the output file, should be either \code{"ps"}
-    or \code{"pdf"}
-  @param burnin An integer: number of saved iterations to discard for
-    the representation of the histogram of the chain
+Plotnpop(path.mcmc, burnin, printit = FALSE, file, format = "pdf")
+}
+\arguments{
+\item{path.mcmc}{Path to output files directory}
+
+\item{burnin}{An integer: number of saved iterations to discard for
+the representation of the histogram of the chain}
+
+\item{printit}{Logical : if TRUE, figures are also printed}
+
+\item{file}{Character : Path to file where figures
+should be printed}
+
+\item{format}{format of the output file, should be either \code{"ps"}
+or \code{"pdf"}}
 }
 \description{
 Gives a plot of the number of populations along the MCMC run

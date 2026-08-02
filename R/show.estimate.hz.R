@@ -1,20 +1,14 @@
 #' @title show.estimate.hz
-#' @description how estimate of parameters of a hybrid zone model.
-#' @usage
-#'   show.estimate.hz(coordinates,
-#'                    path.mcmc.adm,
-#'                    burnin,
-#'                    angle=0,
-#'                    plot.distruct=TRUE,
-#'                    plot.mcmc=TRUE)
-#'   @param coordinates Spatial coordinates of individuals. A matrix with 2 columns 
-#'   @param path.mcmc.adm  Path to output files directory for the admixture model. It seems that the
-#'     path should be given in the Unix style even under Windows (use \/ instead of \\).
-#'     This path *has to*  end with a slash (\/)    (e.g. path.mcmc="/home/me/Geneland-admixture/")
-#'   @param burnin burnin
-#'   @param angle angle of the axis on which sampling sites are projected #'     (in radian)
-#'   @param plot.distruct Logical
-#'   @param plot.mcmc Logical
+#' @description Show estimates of the parameters of a hybrid zone model.
+#' @param coordinates Spatial coordinates of individuals. A matrix with 2 columns
+#' @param path.mcmc.adm Path to the output files directory for the admixture
+#'   model. Use forward slashes even on Windows, and terminate the path with a
+#'   slash (e.g. `path.mcmc.adm = "/home/me/Geneland-admixture/"`).
+#' @param burnin Number of stored iterations to discard.
+#' @param angle Angle of the axis on which sampling sites are projected
+#'   (in radian)
+#' @param plot.distruct Logical
+#' @param plot.mcmc Logical
 #' 
 #' @return No object is returned. All outputs are stored in ascii files 
 #'   located in the \code{path.mcmc} directory 

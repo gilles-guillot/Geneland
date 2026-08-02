@@ -4,25 +4,35 @@
 \alias{show.estimate.hz}
 \title{show.estimate.hz}
 \usage{
-show.estimate.hz(coordinates,
-                   path.mcmc.adm,
-                   burnin,
-                   angle=0,
-                   plot.distruct=TRUE,
-                   plot.mcmc=TRUE)
-  @param coordinates Spatial coordinates of individuals. A matrix with 2 columns 
-  @param path.mcmc.adm  Path to output files directory for the admixture model. It seems that the
-    path should be given in the Unix style even under Windows (use \/ instead of \\).
-    This path *has to*  end with a slash (\/)    (e.g. path.mcmc="/home/me/Geneland-admixture/")
-  @param burnin burnin
-  @param angle angle of the axis on which sampling sites are projected #'     (in radian)
-  @param plot.distruct Logical
-  @param plot.mcmc Logical
+show.estimate.hz(
+  coordinates,
+  path.mcmc.adm,
+  burnin,
+  angle = 0,
+  plot.distruct = TRUE,
+  plot.mcmc = TRUE
+)
+}
+\arguments{
+\item{coordinates}{Spatial coordinates of individuals. A matrix with 2 columns}
+
+\item{path.mcmc.adm}{Path to the output files directory for the admixture
+model. Use forward slashes even on Windows, and terminate the path with a
+slash (e.g. `path.mcmc.adm = "/home/me/Geneland-admixture/"`).}
+
+\item{burnin}{Number of stored iterations to discard.}
+
+\item{angle}{Angle of the axis on which sampling sites are projected
+(in radian)}
+
+\item{plot.distruct}{Logical}
+
+\item{plot.mcmc}{Logical}
 }
 \value{
 No object is returned. All outputs are stored in ascii files 
   located in the \code{path.mcmc} directory
 }
 \description{
-how estimate of parameters of a hybrid zone model.
+Show estimates of the parameters of a hybrid zone model.
 }

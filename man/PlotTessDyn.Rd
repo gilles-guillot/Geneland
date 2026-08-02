@@ -6,10 +6,15 @@
 \usage{
 PlotTessDyn(coordinates = NULL, path.mcmc, nxgrid, nygrid)
 }
+\arguments{
+\item{coordinates}{coordinates}
+
+\item{path.mcmc}{Path to output files directory}
+
+\item{nxgrid}{nb of pixels in the x direction}
+
+\item{nygrid}{nb of pixels in the y direction}
+}
 \description{
 Plot sequence of tessellations simulated along an MCMC run.
-  @param coordinates coordinates
-  @param path.mcmc Path to output files directory 
-  @param nxgrid nb of pixels in the x direction
-  @param nygrid nb of pixels in the y direction
 }

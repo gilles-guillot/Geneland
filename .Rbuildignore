@@ -1,2 +1,11 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.github$
+^REVIEW\.md$
+^.*\.o$
+^.*\.so$
+^.*\.dll$
+^.*~$
+^vignettes/.*\.(aux|bbl|blg|log|toc|idx|ilg|ind|out)$
+^vignettes/.*\.synctex\.gz$
+^vignettes/Geneland-concordance\.tex$

@@ -2,3 +2,32 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Compiled objects and shared libraries
+*.o
+*.so
+*.dll
+*.a
+
+# Editor / build backups
+*~
+*.SAVE
+
+# R CMD build / check output
+*.Rcheck/
+*.tar.gz
+inst/doc/
+
+# LaTeX intermediates from the vignette
+vignettes/*.aux
+vignettes/*.bbl
+vignettes/*.blg
+vignettes/*.log
+vignettes/*.toc
+vignettes/*.idx
+vignettes/*.ilg
+vignettes/*.ind
+vignettes/*.out
+vignettes/*.synctex.gz
+vignettes/*-concordance.tex
+vignettes/*.tex

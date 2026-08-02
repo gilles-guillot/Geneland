@@ -6,6 +6,14 @@
 \usage{
 gl2gp(coordinates, genotypes, file)
 }
+\arguments{
+\item{coordinates}{Matrix of coordinates}
+
+\item{genotypes}{Matrix of genotypes}
+
+\item{file}{Character string giving the path to the file
+where the data in Genepop format should be written}
+}
 \value{
 An ascci file is written. This file may need to be
   process in order to convert eol character from unix style to dos style.
@@ -13,8 +21,4 @@ An ascci file is written. This file may need to be
 \description{
 Takes the matrices  of  coordinates and genotypes in the Geneland format
   and writes it as an ascci file in the Genepop format
-  \@param coordinates   Matrix of coordinates
-  \@param genotypes  MAtrix of genotypes
-  \@param file   Character string giving the path to the file
-    where the data in Genepop format should be written
 }

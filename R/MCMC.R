@@ -1,8 +1,8 @@
-#'
+#' 
 #' @title MCMC inference in Geneland
 #' @description  Markov Chain Monte-Carlo inference of clusters from genotpype data
 #' @param coordinates Spatial coordinates of individuals. A matrix with 2 columns and one line per individual.
-#'
+#' 
 #' @param geno.dip.codom Genotypes  for diploid data with codominant markers.
 #' A matrix with one line per individual and two  columns per locus.
 #' Note that the object has to be of type matrix not table. This can be
@@ -91,7 +91,7 @@
 #' with \code{freq.model="Uncorrelated"}.
 #' @param prop.update.cell Integer between 0 and 1. Proportion of cell updated. For
 #' debugging only.
-#' @param write.rate.Poisson.process Logical: if TRUE (default) write rate
+#' @param write.rate.Poisson.process Logical: if TRUE (default is FALSE) write rate
 #' of Poisson process simulated by MCMC
 #' @param write.number.nuclei Logical: if TRUE (default) write number of nuclei simulated by MCMC
 #' @param write.number.pop Logical: if TRUE (default) write number of populations simulated by MCMC 
@@ -99,22 +99,22 @@
 #' of nuclei simulated by MCMC 
 #' @param write.color.nuclei Logical: if TRUE (default) write color of
 #' nuclei simulated by MCMC
-#' @param write.freq Logical: if TRUE (default is FALSE) write allele
+#' @param write.freq Logical: if TRUE (default is TRUE) write allele
 #' frequencies simulated by MCMC
-#' @param write.ancestral.freq Logical: if TRUE (default is FALSE) write
+#' @param write.ancestral.freq Logical: if TRUE (default is TRUE) write
 #' ancestral allele frequencies simulated by MCMC
-#' @param write.drifts Logical: if TRUE (default is FALSE) write drifts simulated by MCMC 
-#' @param write.logposterior Logical: if TRUE (default is FALSE) write
+#' @param write.drifts Logical: if TRUE (default is TRUE) write drifts simulated by MCMC 
+#' @param write.logposterior Logical: if TRUE (default is TRUE) write
 #' logposterior simulated by MCMC 
-#' @param write.loglikelihood Logical: if TRUE (default is FALSE) write
+#' @param write.loglikelihood Logical: if TRUE (default is TRUE) write
 #' loglikelihood simulated by MCMC
-#' @param write.true.coord Logical: if TRUE (default is FALSE) write true
+#' @param write.true.coord Logical: if TRUE (default is TRUE) write true
 #' spatial coordinates simulated by MCMC 
 #' @param write.size.pop Logical: if TRUE (default is FALSE) write size of
 #' populations simulated by MCMC
-#' @param write.mean.quanti Logical: if TRUE (default is FALSE) write
+#' @param write.mean.quanti Logical: if TRUE (default is TRUE) write
 #' means of quantitatives variables in the various groups simulated by MCMC
-#' @param write.sd.quanti Logical: if TRUE (default is FALSE) write
+#' @param write.sd.quanti Logical: if TRUE (default is TRUE) write
 #' standard deviations of quantitatives variables in the various groups simulated by MCMC
 #' @param write.betaqtc Logical: if TRUE (default is FALSE) write
 #' hyper-parameter beta of distribution of quantitatives variables simulated by MCMC
@@ -186,7 +186,7 @@
 #'     current state of parameters in the Markov chain.
 #'     
 #'   }
-#'  @references 
+#' @references 
 #'         \itemize{
 #' \item G. Guillot, Estoup, A., Mortier, F. Cosson, J.F. A spatial statistical
 #' model for landscape genetics. Genetics, 170, 1261-1280, 2005.
@@ -711,7 +711,6 @@ MCMC <- function(
                        as.double(qtc.999),
                        as.integer(nqtc),
                        #
-                       as.character(path.mcmc),
                        as.integer(integer.par),
                        as.double(double.par),
                        as.integer(nindiv),
@@ -766,10 +765,14 @@ MCMC <- function(
                        as.double(full.cond.y),
                        #
                        as.integer(nitsaved),
-                       as.double(out1),
-                       as.double(outspace),
-                       as.double(outfreq),
-                       as.double(outqtc)
+                       ## Named so that the results are retrieved by name
+                       ## below rather than by a hard-coded position that
+                       ## silently breaks whenever an argument is added or
+                       ## removed.
+                       out1      = as.double(out1),
+                       outspace  = as.double(outspace),
+                       outfreq   = as.double(outfreq),
+                       outqtc    = as.double(outqtc)
                        )
 
     ## write info on the present run in an ascii file
@@ -840,7 +843,7 @@ MCMC <- function(
 
     ##  reception mcmc outputs and write them in external text files
     print('Writing MCMC outputs in external text files')
-    out1 <-  array(dim=c(nitsaved,5),data=out.res[[61]])
+    out1 <-  array(dim=c(nitsaved,5),data=out.res$out1)
     write.table(file=paste(path.mcmc,"Poisson.process.rate.txt",sep=""),
                 out1[,1],row.names=FALSE,col.names=FALSE)
     write.table(file=paste(path.mcmc,"nuclei.numbers.txt",sep=""),
@@ -852,7 +855,7 @@ MCMC <- function(
     write.table(file=paste(path.mcmc,"log.posterior.density.txt",sep=""),
                 out1[,5],row.names=FALSE,col.names=FALSE)
     ##
-    outspace <- array(dim=c(nitsaved,5,nb.nuclei.max),data=out.res[[62]])
+    outspace <- array(dim=c(nitsaved,5,nb.nuclei.max),data=out.res$outspace)
     for(iitstor in 1:(nit/thinning))
       {
         append <- ifelse(iitstor>1,TRUE,FALSE)
@@ -866,7 +869,7 @@ MCMC <- function(
                     t(outspace[iitstor,4:5,]),row.names=FALSE,col.names=FALSE)
       }
     ##
-    outfreq <- array(dim=c(nitsaved,3,npopmax,ncolt,nalmax),data=out.res[[63]])
+    outfreq <- array(dim=c(nitsaved,3,npopmax,ncolt,nalmax),data=out.res$outfreq)
     for(iitstor in 1:(nit/thinning))
       {
         append <- ifelse(iitstor>1,TRUE,FALSE)
@@ -885,7 +888,7 @@ MCMC <- function(
           }
       }
     ##
-    outqtc <- array(dim=c(nitsaved,2,npopmax,nqtc),data=out.res[[64]])
+    outqtc <- array(dim=c(nitsaved,2,npopmax,nqtc),data=out.res$outqtc)
      for(iitstor in 1:(nit/thinning))
       {
         append <- ifelse(iitstor>1,TRUE,FALSE)

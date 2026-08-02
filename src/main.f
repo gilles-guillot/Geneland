@@ -1,5 +1,5 @@
       subroutine mcmcgld(s,zz,missloc,z,ql,nql,qtc,nqtc,
-     &     path,intpar,dblepar,
+     &     intpar,dblepar,
      &     nindiv,nlocd,nloch,ncolt,nal,nalmax,nppmax,
      &     npop,npopmin,npopmax,xlim,ylim, indcell,indcelltmp,
      &     distcell,distcelltmp,
@@ -14,7 +14,7 @@
 
 *     data
       integer nindiv,nlocd,nlocd2,nloch,nloch2,ncolt,
-     &     nal,nalmax,zz,z,ploidy,jcf,nchpath,missloc,
+     &     nal,nalmax,zz,z,ploidy,jcf,missloc,
      &     nqtc,ql,nql,nitsaved
       double precision s,qtc
 
@@ -40,9 +40,6 @@
       double precision ptmp,xlim,ylim,ggrunif,rpostlamb,
      &     distcell,distcelltmp,a,ttmp,lpriorallvar,llallvar2,
      &     lpriorallvartmp,llallvartmp,fcy,pct,sqtc,ssqtc
-      character*255  path,filef,filenpp,filelambda,filenpop,fileu,filec,
-     &     filefa,filedrift,filelpp,filell,filet,filesize,
-     &     filemq,filesdq,filebetaqtc
 
 *     dimensions
       dimension s(2,nindiv),t(2,nindiv),zz(nindiv,2*nlocd),
@@ -94,7 +91,8 @@ c$$$      write(*,*) ''
       filtna =     intpar(15+5)
 c     parameter ploidy says how to interpret data in matrix z
       ploidy =     intpar(15+6)
-      nchpath =    intpar(15+7)
+c     intpar(15+7) used to hold nchar(path.mcmc); the MCMC output is now
+c     written from R, so it is read no more.
       nit =        intpar(15+8)
       thinning =   intpar(15+9)
       usegeno1 =   intpar(15+10)
@@ -112,23 +110,9 @@ c     parameter ploidy says how to interpret data in matrix z
 *     look for smallest rectangle with edges parrallel to axes enclosing the spatial domain
       call limit(nindiv,s,xlim,ylim,dt)
 
-*     Ouverture des fichiers pour l'ecriture des sorties
-      filelambda = path(1:nchpath) // "Poisson.process.rate.txt"
-      filenpp = path(1:nchpath) // "nuclei.numbers.txt"
-      filenpop = path(1:nchpath) // "populations.numbers.txt"
-      fileu = path(1:nchpath) // "coord.nuclei.txt"
-      filec = path(1:nchpath) // "color.nuclei.txt"
-      filef = path(1:nchpath) // "frequencies.txt"
-      filefa = path(1:nchpath) // "ancestral.frequencies.txt"
-      filedrift = path(1:nchpath) // "drifts.txt"
-      filelpp = path(1:nchpath) // "log.posterior.density.txt"
-      filell = path(1:nchpath) // "log.likelihood.txt"
-      filet = path(1:nchpath) // "hidden.coord.txt"
-      filesize = path(1:nchpath) // "size.pop.txt"
-      filemq  = path(1:nchpath) // "mean.qtc.txt"
-      filesdq  = path(1:nchpath) // "sd.qtc.txt"
-      filebetaqtc = path(1:nchpath) // "beta.qtc.txt"
-
+c     Output file names used to be built here and the files opened below.
+c     mcmcgld now returns its output in the out1/outspace/outfreq/outqtc
+c     arrays and R writes the files, so no Fortran-side I/O remains.
 
 c$$$      if(intpar(1) .eq.1) then
 c$$$         open(9,file=filelambda)
@@ -1535,7 +1519,7 @@ c      call intpr('end rpriorfa',-1,0,0)
 **********************************************************************
 *     Mise a jour gibbsienne des frequences
 *     prior p(f) Dirichlet
-*     et une paramétrisation à la Falush (Genetics 2003)
+*     et une paramï¿½trisation ï¿½ la Falush (Genetics 2003)
 *     p(f|...)  est aussi Dirichlet 
 *     ni = nbre de modalites  observees
 *     (Cf Falush P. 26)
@@ -1702,7 +1686,7 @@ c$$$      write(*,*) 'ptmp=',ptmp
 
 **********************************************************************
 *
-*     Mise à jour M-H des freq allelique de la pop ancestrale 
+*     Mise ï¿½ jour M-H des freq allelique de la pop ancestrale 
 *     fa admet un prior Dirichlet(1,...,1)
       subroutine updfa(npop,npopmax,nlocmax,nalmax,nal,f,fa,drift)
       implicit none 
@@ -1715,7 +1699,7 @@ c$$$      write(*,*) 'ptmp=',ptmp
       parameter(sigdelta = 0.05) 
       
       do iloc = 1,nlocmax
-*     tirage des deux formes alleliques dont les freq seront mises à jour 
+*     tirage des deux formes alleliques dont les freq seront mises ï¿½ jour 
          ial1 = 1+ idint(dint(dble(nal(iloc))*ggrunif(0.d0,1.d0)))
          ial2 = ial1 
          do while(ial2 .eq. ial1)
@@ -1755,7 +1739,7 @@ c     write(*,*) 'dans le while'
 
 **********************************************************************
 *
-*     Mise à jour M-H des freq allelique de la pop ancestrale 
+*     Mise ï¿½ jour M-H des freq allelique de la pop ancestrale 
 *     fa admet un prior Dirichlet(1,...,1)
       subroutine updfa2(npop,npopmax,nlocd,nloch,nql,ncolt,nalmax,nal,
      &     f,fa,drift,usegeno2,usegeno1,useql)
@@ -1779,7 +1763,7 @@ c      write(*,*) nlocd,nloch,nql,ncolt
 c     diploid geno
          do iloc = 1,nlocd
 c            write(*,*) 'iloc=',iloc
-*     tirage des deux formes alleliques dont les freq seront mises à jour 
+*     tirage des deux formes alleliques dont les freq seront mises ï¿½ jour 
             ial1 = 1+ idint(dint(dble(nal(iloc))*ggrunif(0.d0,1.d0)))
             ial2 = ial1 
             do while(ial2 .eq. ial1)
@@ -1820,7 +1804,7 @@ c               write(*,*) 'lratio=',lratio
 c     haploid geno
          do iloc = nlocd+1,nlocd+nloch
 c            write(*,*) 'iloc=',iloc
-*     tirage des deux formes alleliques dont les freq seront mises à jour 
+*     tirage des deux formes alleliques dont les freq seront mises ï¿½ jour 
             ial1 = 1+ idint(dint(dble(nal(iloc))*ggrunif(0.d0,1.d0)))
             ial2 = ial1 
             do while(ial2 .eq. ial1)
@@ -1859,7 +1843,7 @@ c            write(*,*) 'fa2=',fa2
       if(useql .eq. 1) then
 c     haploid geno
          do iloc = nlocd+nloch+1, nlocd+nloch+nql
-*     tirage des deux formes alleliques dont les freq seront mises à jour 
+*     tirage des deux formes alleliques dont les freq seront mises ï¿½ jour 
             ial1 = 1+ idint(dint(dble(nal(iloc))*ggrunif(0.d0,1.d0)))
             ial2 = ial1 
             do while(ial2 .eq. ial1)
@@ -1897,7 +1881,7 @@ c     write(*,*) 'dans le while'
 ************************************************************************   
 
 ************************************************************************
-*     Mise à jour M-H du vecteur de dérives génétiques 
+*     Mise ï¿½ jour M-H du vecteur de dï¿½rives gï¿½nï¿½tiques 
 *     prior indep. beta sur chaque composante
       subroutine upddrift(npop,npopmax,nlocmax,nalmax,nal,
      &     f,fa,drift,shape1,shape2)
@@ -1949,7 +1933,7 @@ c     prior beta(shape1,shape2)
 
 
 ************************************************************************
-*     Mise à jour M-H du vecteur de dérives génétiques 
+*     Mise ï¿½ jour M-H du vecteur de dï¿½rives gï¿½nï¿½tiques 
 *     prior indep. beta sur chaque composante
       subroutine upddriftallvar(npop,npopmax,nlocd,nloch,nql,ncolt,
      &    nalmax,nal,f,fa,drift,shape1,shape2,usegeno2,usegeno1,
@@ -4196,7 +4180,7 @@ c      enddo
 
 ************************************************************************
 *     naissance ou mort d'une cellule
-*     avec prior Poisson(lambda) tronquée :   0 < m < nppmax
+*     avec prior Poisson(lambda) tronquï¿½e :   0 < m < nppmax
       subroutine bdpp(nindiv,u,c,utmp,ctmp,npop,npopmax,
      &     nloc,nlocmax,nlocmax2,nalmax,npp,nppmax,zz,f,s,xlim,ylim,
      &     indcell,distcell,indcelltmp,distcelltmp,lambda,ploidy)
@@ -4846,8 +4830,8 @@ c      write(*,*) 'listcell=',listcell
 ***********************************************************************
 *
 *     Tirage de nu cellules parmi ncellpop cellules
-*      version corrigée de sample apres un bug 
-*     trouvé en septembre 2005 à Göteborg
+*      version corrigï¿½e de sample apres un bug 
+*     trouvï¿½ en septembre 2005 ï¿½ Gï¿½teborg
       subroutine sample2(cellpop,nppmax,nu,ncellpop,listcell)
       implicit none
       integer nppmax,cellpop(nppmax),nu,ncellpop,listcell(nppmax)
@@ -5276,10 +5260,10 @@ c         write(*,*) 'nn=',nn
 
 ***********************************************************************
 *
-*     Naissance et mort de pop avec réallocations 
+*     Naissance et mort de pop avec rï¿½allocations 
 *     (split/merge)
 *     proposition de drift* selon prior
-*     proposition de f* selon conditionelle complète 
+*     proposition de f* selon conditionelle complï¿½te 
 *     dans les deux sens
 *
       subroutine bdpop9(npop,npopmin,npopmax,f,fa,drift,
@@ -5819,10 +5803,10 @@ c      write(*,*) 'mort'
 
 ************************************************************************
 *     ajoute une pop 
-*     dans  le tableau des dérives selon le prior
+*     dans  le tableau des dï¿½rives selon le prior
 *     et dans le tableau des frequences 
-*     selon la conditionelle complète pour les deux nouveaux groupes
-*     (sans modifier les tableaux en entrée)
+*     selon la conditionelle complï¿½te pour les deux nouveaux groupes
+*     (sans modifier les tableaux en entrï¿½e)
       subroutine addfreq7(npop,npopmax,nloc,nlocmax,
      &     nal,nalmax,isplit,f,ftmp,fa,
      &     drift,drifttmp,a,ptmp,ntmp)
@@ -5906,8 +5890,8 @@ c$$$
 ***********************************************************************
 *     ajoute une pop 
 *     dans le tableau des frequences 
-*     selon la conditionelle complète pour les deux nouveaux groupes
-*     (sans modifier les tableaux en entrée)
+*     selon la conditionelle complï¿½te pour les deux nouveaux groupes
+*     (sans modifier les tableaux en entrï¿½e)
       subroutine addfreq8(npop,npopmax,nloc,nlocmax,
      &     nal,nalmax,isplit,f,ftmp,fa,
      &     drift,drifttmp,a,ptmp,ntmp)
@@ -5959,8 +5943,8 @@ c$$$
 ***********************************************************************
 *     ajoute une pop 
 *     dans le tableau des frequences 
-*     selon la conditionelle complète pour les deux nouveaux groupes
-*     (sans modifier les tableaux en entrée)
+*     selon la conditionelle complï¿½te pour les deux nouveaux groupes
+*     (sans modifier les tableaux en entrï¿½e)
       subroutine addfall(npop,npopmax,nlocd,nlocd2,nloch,nql,
      &     ncolt,nal,nalmax,isplit,f,ftmp,fa,drift,drifttmp,a,ptmp,ntmp,
      &     usegeno2,usegeno1,useql)
@@ -6066,9 +6050,9 @@ c$$$
 ***********************************************************************
 *     ajoute une pop 
 *     dans  le tableau des frequences  selon le prior
-*     selon la conditionelle complète pour les deux nouveaux groupes
-*     et une valeur 0.5d0 dans le tableau des dérives 
-*     (sans modifier les tableaux en entrée)
+*     selon la conditionelle complï¿½te pour les deux nouveaux groupes
+*     et une valeur 0.5d0 dans le tableau des dï¿½rives 
+*     (sans modifier les tableaux en entrï¿½e)
 *     pour court-circuiter le F-model
       subroutine addfreq7bis(npop,npopmax,nloc,nlocmax,
      &     nal,nalmax,isplit,f,ftmp,
@@ -6126,9 +6110,9 @@ c$$$
 ***********************************************************************
 *     ajoute une pop 
 *     dans  le tableau des frequences selon le prior
-*     selon la conditionelle complète pour les deux nouveaux groupes
-*     et une valeur 0.5d0 dans le tableau des dérives 
-*     (sans modifier les tableaux en entrée)
+*     selon la conditionelle complï¿½te pour les deux nouveaux groupes
+*     et une valeur 0.5d0 dans le tableau des dï¿½rives 
+*     (sans modifier les tableaux en entrï¿½e)
 *     pour court-circuiter le F-model
       subroutine addfallbis(npop,npopmax,nlocd,nlocd2,nloch,nql,ncolt,
      &     nal,nalmax,isplit,f,ftmp,fa,drift,drifttmp,a,ptmp,ntmp,
@@ -6238,7 +6222,7 @@ c$$$
 *     enleve une pop des tableau des frequences et des derives
 *     tirage d'une freq selon posterior apres un merge de deux pops
 *     tirage d'une derive selon prior 
-*     sans modifier des tableaux en entrée
+*     sans modifier des tableaux en entrï¿½e
       subroutine remfreq7(ipoprem,ipophost,
      &     npop,npopmax,nloc,nlocmax,nal,
      &     nalmax,f,ftmp,drift,drifttmp,fa,a,ptmp,ntmp)
@@ -6327,7 +6311,7 @@ c$$$      write(*,*) 'ftmp(',ipophost,2,2,')=',ftmp(ipophost,2,2)
 ******************************************************************
 *     enleve une pop des tableau des frequences
 *     tirage d'une freq selon posterior apres un merge de deux pops
-*     sans modifier des tableaux en entrée
+*     sans modifier des tableaux en entrï¿½e
       subroutine remfreq8(ipoprem,ipophost,
      &     npop,npopmax,nloc,nlocmax,nal,
      &     nalmax,f,ftmp,drift,drifttmp,fa,a,ptmp,ntmp)
@@ -6397,7 +6381,7 @@ c$$$      write(*,*) 'ftmp(',ipophost,2,2,')=',ftmp(ipophost,2,2)
 ******************************************************************
 *     enleve une pop des tableau des frequences
 *     tirage d'une freq selon posterior apres un merge de deux pops
-*     sans modifier des tableaux en entrée
+*     sans modifier des tableaux en entrï¿½e
       subroutine remfall(ipoprem,ipophost,
      &     npop,npopmax,nlocd,nloch,nql,ncolt,nal,
      &     nalmax,f,ftmp,drift,drifttmp,fa,a,ptmp,ntmp,
@@ -6494,7 +6478,7 @@ c$$$      write(*,*) 'ftmp(',ipophost,2,2,')=',ftmp(ipophost,2,2)
 
 ******************************************************************
 *     enleve une pop des tableau des derives
-*     sans modifier des tableaux en entrée
+*     sans modifier des tableaux en entrï¿½e
       subroutine remdrift(ipoprem,ipophost,npop,npopmax,drift,drifttmp,
      &     shape1,shape2)
       implicit none
@@ -6528,7 +6512,7 @@ c$$$      write(*,*) 'ftmp(',ipophost,2,2,')=',ftmp(ipophost,2,2)
 
 ***********************************************
 *     enleve une pop des tableau des derives
-*     sans modifier des tableaux en entrée
+*     sans modifier des tableaux en entrï¿½e
 *     d* = (d1+d2)/2
       subroutine remdrift2(ipoprem,ipophost,npop,npopmax,drift,drifttmp)
       implicit none
@@ -6564,8 +6548,8 @@ c$$$      write(*,*) 'ftmp(',ipophost,2,2,')=',ftmp(ipophost,2,2)
 *****************************************************************
 *     enleve une pop des tableaux des frequences et des derives
 *     tirage d'une freq selon posterior apres un merge de deux pops
-*     la nouvelle derive est mise à 0.5d0
-*     (sans modifier les tableaux en entrée)
+*     la nouvelle derive est mise ï¿½ 0.5d0
+*     (sans modifier les tableaux en entrï¿½e)
 *     c'est pour court-circuiter le F-model 
       subroutine remfreq7bis(ipoprem,ipophost,
      &     npop,npopmax,nloc,nlocmax,nal,
@@ -6657,8 +6641,8 @@ c$$$      write(*,*) 'ftmp(',ipophost,2,2,')=',ftmp(ipophost,2,2)
 *****************************************************************
 *     enleve une pop des tableaux des frequences et des derives
 *     tirage d'une freq selon posterior apres un merge de deux pops
-*     la nouvelle derive est mise à 0.5d0
-*     (sans modifier les tableaux en entrée)
+*     la nouvelle derive est mise ï¿½ 0.5d0
+*     (sans modifier les tableaux en entrï¿½e)
 *     c'est pour court-circuiter le F-model 
       subroutine remfallbis(ipoprem,ipophost,
      &     npop,npopmax,nlocd,nlocd2,nloch,nql,ncolt,nal,
@@ -12349,7 +12333,7 @@ c      write(6,*) 'debut postproc order=',order
 
 c      write(6,*) 'npopest=', npopest
 
-*     coordonnées de la grille 
+*     coordonnï¿½es de la grille 
       call limit(nindiv,s,xlim,ylim,dt)
       idom = 1
       do ixdom =1,nxdommax
@@ -12566,7 +12550,7 @@ c$$$      filedom = pathall(1:nchpathall) // "/proba.pop.membership.txt"
 c$$$      open(14,file=fileperm)
 c$$$      open(15,file=filedom)
 c$$$******************************
-c$$$*     coordonnées de la grille 
+c$$$*     coordonnï¿½es de la grille 
 c$$$      call limit(nindiv,s,xlim,ylim,dt)
 c$$$      idom = 1
 c$$$      do ixdom =1,nxdommax
